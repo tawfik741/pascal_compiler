@@ -1,0 +1,5 @@
+program Test
+var 
+test,testtest:integer;
+var test : boolean ;
+a=3+5;	
