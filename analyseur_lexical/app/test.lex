@@ -20,7 +20,7 @@ type 					"integer"|"boolean"|"char"|"string"
 op_logique 				"or"|"not"|"and"
 bool_value 				"true"|"false" 
 punc 					";"|"."|","|":"
-keyword 		"program"|"var"|"func"|"proc"|"begin"|"if"|"then"|"else"|"while"|"do"|"for"|"to"|"repeat"|"until"|"end"
+keyword 				"program"|"var"|"func"|"proc"|"begin"|"if"|"then"|"else"|"while"|"do"|"for"|"to"|"repeat"|"until"|"end"
 commentline 			"//".*"\n"
 program					"program"{ignore_space}{id}
 liste_declarations		{declaration}* 
@@ -38,11 +38,10 @@ instruction_composee 	"begin"{ignore_space}{liste_instructions}{ignore_space}"en
 liste_instructions 		{instruction}*
 if_instruction			"if"{ignore_space}{expression}{ignore_space}"then"{ignore_space}{instruction}{ignore_space}"else"{ignore_space}{instruction}
 while_instruction		"while"{ignore_space}{expression}{ignore_space}"do"{ignore_space}{instruction}
-assign_instruction 		{lvalue}{ignore_space}{ignore_space}":="{ignore_space}{expression}|{appel_methode}
-read_instruction		"read"{ignore_space}{ouvrante}{ignore_space}{liste_ids}{ignore_space}{fermante}
 write_instruction		"write"{ignore_space}{ouvrante}{ignore_space}{liste_expressions}{ignore_space}{fermante}
-rw_instruction			{read_instruction}|{write_instruction}
-instruction 			{assign_instruction}|{rw_instruction}|{if_instruction}	
+read_instruction		"read"{ignore_space}{ouverte}{ignore_space}{liste_ids}{ignore_space}{fermante}
+assign_instruction 		{lvalue}{ignore_space}{ignore_space}":="{ignore_space}{expression}|{appel_methode}
+instruction 			if_instruction|while_instruction|write_instruction|read_instruction|assign_instruction
 lvalue					{id}|{expression}
 appel_methode			{id}{ignore_space}{ouvrante}{ignore_space}{liste_expressions}{ignore_space}{fermante}
 liste_expressions		{expression_s}*
@@ -60,11 +59,11 @@ facteur					{literal_entier}|{expression}|{id}{expression}
 {punc}															printf(" punc ");
 {bool_value}                                                    printf(" boolean ");
 {type}                                                          printf(" type ");
-{op_logique}													printf("opérateur logique");
+{op_logique}													printf("opÃ©rateur logique");
 {comparaison}													printf("comp");
-{op_logique}													printf("opérateur logique");
-{ouvrante}                                                      printf(" parenthèse_ouvrante ");
-{fermante}                                                      printf(" parenthèse_fermante ");
+{op_logique}													printf("opÃ©rateur logique");
+{ouvrante}                                                      printf(" parenthÃ¨se_ouvrante ");
+{fermante}                                                      printf(" parenthÃ¨se_fermante ");
 {nb}                                                            printf(" Number ");
 ":="	                                                        printf(" OPPAFFECT ");
 {program}														printf ("program");
