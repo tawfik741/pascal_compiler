@@ -1,6 +1,6 @@
 program Test
 var 
 test,testtest:integer;
-read(text);
+read ( text ) ;
 var test : boolean ;
 a=3+5;	
