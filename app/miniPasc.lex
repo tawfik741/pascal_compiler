@@ -9,7 +9,8 @@
 %}
 
 
-%option yylineno
+%option yylineno 
+
 lettre [A-Za-z]
 chiffre [1-9]
 sep ["_"]
@@ -36,22 +37,23 @@ message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
 
 {bl}                                                                                /* pas d'actions */
 " "																					/* pas d'actions */
-"\n" 			                                                             		++yylineno;
-"program"                                                                           return program;
-"procedure"																			return procedure;
-"begin"																				return keyword_begin;
-"end"                                                                               return keyword_end;
-"var"																				return keyword_var;
-"read"																				return keyword_read;
-"write"																				return keyword_write;
-"while"																				return keyword_while;
-"do"																				return keyword_do;
-"if"																				return keyword_if;
-"then"																				return keyword_then;
-"else"																				return keyword_else;
-"integer"																			return type_integer;
-"array"																				return keyword_array;
-"of"																				return keyword_of;
+"\n"                                                                                  { }
+"\n" 			                                                             		{++yylineno;}
+[pP][rR][oO][gG][rR][aA][mM]                                                        return program;
+[pP][rR][oO][cC][eE][dD][uU][rR][eE]											    return procedure;
+[bB][eE][gG][iI][nN]																return keyword_begin;
+[eE][nN][dD]                                                                        return keyword_end;
+[vV][aA][rR]																	    return keyword_var;
+[rR][eE][aA][dD]																	return keyword_read;
+[wW][rR][iI][tT][eE]																return keyword_write;
+[wW][hH][iI][lL][eE]																return keyword_while;
+[dD][oO]																			return keyword_do;
+[iI][fF]																			return keyword_if;
+[tT][hH][eE][nN]																	return keyword_then;
+[eE][lL][sS][eE]																	return keyword_else;
+[iI][nN][tT][eE][gG][eE][rR]														return type_integer;
+[aA][rR][rR][aA][yY]																return keyword_array;
+[oO][fF]																			return keyword_of;
 "["																					return opening_brackets;
 "]"																					return closing_brackets;
 ".."																				return two_points;

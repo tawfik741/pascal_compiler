@@ -1,7 +1,6 @@
 program Hello ;
-var
-age: integer;
+var 
+tawfik : integer;
 begin
-age := 5
-writeln(age);
+tawfik:=3;
 end

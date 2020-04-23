@@ -62,7 +62,7 @@ liste_declarations : liste_declarations declaration
 
 declaration: keyword_var declaration_corps semicolon
 			|error declaration_corps semicolon 		{yyerror ("keyword var attendu on line : "); }
-			|keyword_var declaration_corps error 	{yyerror ("semicolon attendu on line : "); };		
+			|keyword_var declaration_corps error 	{yyerror ("[declaration]semicolon attendu on line : "); };		
 
 
 declaration_corps: liste_identificateurs colon type
@@ -94,7 +94,7 @@ standard_type: type_integer
 declaration_methodes : declaration_methodes semicolon declaration_methode
 					   |declaration_methode
 					   |error semicolon declaration_methode 				{yyerror ("declaration methode attendu on line : "); }
-					   |declaration_methodes error declaration_methode 		{yyerror ("semicolon attendu on line : "); };
+					   |declaration_methodes error declaration_methode 		{yyerror ("[declaration]semicolon attendu on line : "); };
 
 
 declaration_methode: entete_methode instruction_composee
@@ -105,7 +105,7 @@ entete_methode: procedure identifier semicolon
 				|procedure identifier arguments semicolon
 				|error identifier semicolon 		{yyerror ("procedure attendu on line : "); }
 				|procedure error semicolon 			{yyerror ("identifier attendu on line : "); }
-				|procedure identifier error 		{yyerror ("semicolon attendu on line : "); };
+				|procedure identifier error 		{yyerror ("[entete]semicolon attendu on line : "); };
 
 
 arguments: opening_parenthesis liste_parametres closing_parenthesis
@@ -115,18 +115,18 @@ arguments: opening_parenthesis liste_parametres closing_parenthesis
 liste_parametres: liste_parametres semicolon declaration_corps
 			   	  |declaration_corps
 			   	  |error semicolon declaration_corps 		{yyerror ("parametre attendu on line : "); }
-			   	  |liste_parametres error declaration_corps 	{yyerror ("semicolon attendu on line : "); };
+			   	  |liste_parametres error declaration_corps 	{yyerror ("[parametres]semicolon attendu on line : "); };
 
 
 instruction_composee	: keyword_begin keyword_end
 						  |keyword_begin liste_instructions keyword_end
-						  |error keyword_end 		{yyerror ("keyword_begin attendu on line : ");};
+						  |error keyword_end 		{yyerror ("keyword_end attendu on line : ");};
 
 
 liste_instructions: liste_instructions semicolon instruction
 					|instruction  
 					|error semicolon instruction 				{yyerror ("instruction attendu on line : ");}
-					|liste_instructions error instruction 		{yyerror ("semicolon attendu on line : ");};
+					|liste_instructions error instruction 		{yyerror ("[instructions]semicolon attendu on line : ");};
 
 
 instruction: lvalue affectop expression

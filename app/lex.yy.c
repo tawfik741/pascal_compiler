@@ -286,42 +286,43 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 38
-#define YY_END_OF_BUFFER 39
-static yyconst short int yy_acclist[171] =
+#define YY_NUM_RULES 39
+#define YY_END_OF_BUFFER 40
+static yyconst short int yy_acclist[172] =
     {   0,
-       39,   37,   38,    5,   37,   38,    7,   38,    6,   37,
-       38,   36,   37,   38,   28,   37,   38,   29,   37,   38,
-       32,   37,   38,   33,   37,   38,   27,   37,   38,   33,
-       37,   38,   37,   38,   32,   37,   38,   31,   36,   37,
-       38,   35,   37,   38,   26,   37,   38,   30,   37,   38,
-       23,   37,   38,   24,   37,   38,   30,   37,   38,   30,
-       37,   38,   30,   37,   38,   30,   37,   38,   30,   37,
-       38,   30,   37,   38,   30,   37,   38,   30,   37,   38,
-       30,   37,   38,   30,   37,   38,   30,   37,   38,    4,
-       38,    3,   38,    4,   38,    5,   36,   31,   25,    1,
+       40,   38,   39,    5,   38,   39,    7,    8,   39,    6,
+       38,   39,   37,   38,   39,   29,   38,   39,   30,   38,
+       39,   33,   38,   39,   34,   38,   39,   28,   38,   39,
+       34,   38,   39,   38,   39,   33,   38,   39,   32,   37,
+       38,   39,   36,   38,   39,   27,   38,   39,   31,   38,
+       39,   31,   38,   39,   31,   38,   39,   31,   38,   39,
+       31,   38,   39,   31,   38,   39,   31,   38,   39,   31,
+       38,   39,   31,   38,   39,   31,   38,   39,   31,   38,
+       39,   31,   38,   39,   24,   38,   39,   25,   38,   39,
+        4,   39,    3,   39,    4,   39,    5,   37,   32,   26,
 
-       31,   36,   34,   30,   30,   30,   16,   30,   30,   30,
-       17,   30,   30,   22,   30,   30,   30,   30,   30,   30,
-       30,    2,   30,   30,   30,   11,   30,   30,   30,   30,
-       30,   12,   30,   30,   30,   30,   30,   19,   30,   30,
-       30,   30,   13,   30,   18,   30,   30,   30,   21,   30,
-       10,   30,   30,   30,   30,   15,   30,   14,   30,   30,
-       30,   30,   20,   30,   30,    8,   30,   30,    9,   30
+        1,   32,   37,   35,   31,   31,   31,   17,   31,   31,
+       31,   18,   31,   31,   23,   31,   31,   31,   31,   31,
+       31,   31,    2,   31,   31,   31,   12,   31,   31,   31,
+       31,   31,   13,   31,   31,   31,   31,   31,   20,   31,
+       31,   31,   31,   14,   31,   19,   31,   31,   31,   22,
+       31,   11,   31,   31,   31,   31,   16,   31,   15,   31,
+       31,   31,   31,   21,   31,   31,    9,   31,   31,   10,
+       31
     } ;
 
 static yyconst short int yy_accept[100] =
     {   0,
-        1,    1,    1,    1,    1,    2,    4,    7,    9,   12,
-       15,   18,   21,   24,   27,   30,   33,   35,   38,   42,
-       45,   48,   51,   54,   57,   60,   63,   66,   69,   72,
-       75,   78,   81,   84,   87,   90,   92,   94,   96,   97,
-       98,   99,  100,  101,  103,  104,  105,  106,  107,  109,
-      110,  111,  113,  114,  116,  117,  118,  119,  120,  121,
-      122,  123,  124,  125,  126,  128,  129,  130,  131,  132,
-      134,  135,  136,  137,  138,  140,  141,  142,  143,  145,
-      147,  148,  149,  151,  153,  154,  155,  156,  158,  160,
-      161,  162,  163,  165,  166,  168,  169,  171,  171
+        1,    1,    1,    1,    1,    2,    4,    7,   10,   13,
+       16,   19,   22,   25,   28,   31,   34,   36,   39,   43,
+       46,   49,   52,   55,   58,   61,   64,   67,   70,   73,
+       76,   79,   82,   85,   88,   91,   93,   95,   97,   98,
+       99,  100,  101,  102,  104,  105,  106,  107,  108,  110,
+      111,  112,  114,  115,  117,  118,  119,  120,  121,  122,
+      123,  124,  125,  126,  127,  129,  130,  131,  132,  133,
+      135,  136,  137,  138,  139,  141,  142,  143,  144,  146,
+      148,  149,  150,  152,  154,  155,  156,  157,  159,  161,
+      162,  163,  164,  166,  167,  169,  170,  172,  172
 
     } ;
 
@@ -333,14 +334,14 @@ static yyconst int yy_ec[256] =
         1,    4,    1,    5,    1,    1,    1,    1,    1,    6,
         7,    8,    9,   10,   11,   12,   13,    1,   14,   14,
        14,   14,   14,   14,   14,   14,   14,   15,   16,    1,
-       17,    1,    1,    1,   18,   18,   18,   18,   18,   18,
-       18,   18,   18,   18,   18,   18,   18,   18,   18,   18,
-       18,   18,   18,   18,   18,   18,   18,   18,   18,   18,
-       19,    1,   20,    1,    5,    1,   21,   22,   23,   24,
+       17,    1,    1,    1,   18,   19,   20,   21,   22,   23,
+       24,   25,   26,   27,   27,   28,   29,   30,   31,   32,
+       27,   33,   34,   35,   36,   37,   38,   27,   39,   27,
+       40,    1,   41,    1,    5,    1,   18,   19,   20,   21,
 
-       25,   26,   27,   28,   29,   18,   18,   30,   31,   32,
-       33,   34,   18,   35,   36,   37,   38,   39,   40,   18,
-       41,   18,    1,    1,    1,    1,    1,    1,    1,    1,
+       22,   23,   24,   25,   26,   27,   27,   28,   29,   30,
+       31,   32,   27,   33,   34,   35,   36,   37,   38,   27,
+       39,   27,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -360,34 +361,34 @@ static yyconst int yy_ec[256] =
 static yyconst int yy_meta[42] =
     {   0,
         1,    1,    1,    1,    2,    1,    1,    1,    1,    1,
-        1,    1,    1,    2,    1,    1,    1,    2,    1,    1,
+        1,    1,    1,    2,    1,    1,    1,    2,    2,    2,
         2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2
+        2,    2,    2,    2,    2,    2,    2,    2,    2,    1,
+        1
     } ;
 
 static yyconst short int yy_base[102] =
     {   0,
         0,    0,   39,   40,  110,  111,  107,  111,  111,    0,
       111,  111,  111,  111,  111,   94,   95,   98,   91,   87,
-      111,    0,  111,  111,   68,   77,   68,   14,   19,   74,
-       64,   73,   69,   75,   21,  111,  111,   82,   92,    0,
-       79,  111,  111,   78,  111,    0,   56,   63,    0,   53,
-       64,    0,   50,    0,   53,   64,   59,   48,   53,   52,
-      111,   59,   50,   53,    0,   52,   27,   52,   43,    0,
-       44,   36,   31,   39,    0,   43,   44,   33,    0,    0,
-       42,   41,    0,    0,   40,   40,   42,    0,    0,   27,
-       23,   29,    0,   24,    0,   30,    0,  111,   56,   51,
+      111,   70,   80,    0,   70,   16,   22,   77,   66,   76,
+       72,   78,   24,  111,  111,  111,  111,   82,   92,    0,
+       79,  111,  111,   78,  111,    0,   58,   66,    0,   55,
+       67,    0,   52,    0,   55,   67,   62,   50,   56,   55,
+      111,   62,   53,   56,    0,   55,   30,   55,   45,    0,
+       46,   38,   33,   41,    0,   46,   47,   35,    0,    0,
+       45,   44,    0,    0,   43,   43,   45,    0,    0,   29,
+       25,   31,    0,   23,    0,   33,    0,  111,   57,   51,
 
-       50
+       49
     } ;
 
 static yyconst short int yy_def[102] =
     {   0,
        98,    1,   99,   99,   98,   98,   98,   98,   98,  100,
        98,   98,   98,   98,   98,   98,   98,   98,  100,   98,
-       98,  101,   98,   98,  101,  101,  101,  101,  101,  101,
-      101,  101,  101,  101,  101,   98,   98,   98,   98,  100,
+       98,  101,  101,  101,  101,  101,  101,  101,  101,  101,
+      101,  101,  101,   98,   98,   98,   98,   98,   98,  100,
        98,   98,   98,  100,   98,  101,  101,  101,  101,  101,
       101,  101,  101,  101,  101,  101,  101,  101,  101,  101,
        98,  101,  101,  101,  101,  101,  101,  101,  101,  101,
@@ -402,10 +403,10 @@ static yyconst short int yy_nxt[153] =
     {   0,
         6,    7,    8,    9,   10,   11,   12,   13,   14,   15,
        16,   17,   18,   19,   20,   21,    6,   22,   23,   24,
-       25,   26,   22,   27,   28,   22,   22,   22,   29,   22,
-       22,   22,   30,   31,   32,   22,   33,   22,   34,   35,
-       22,   37,   37,   50,   52,   51,   38,   38,   59,   77,
-       53,   46,   40,   78,   97,   60,   36,   36,   96,   95,
+       25,   26,   24,   24,   24,   27,   24,   24,   24,   24,
+       28,   29,   30,   24,   31,   24,   32,   33,   24,   34,
+       35,   37,   37,   50,   52,   51,   38,   38,   59,   77,
+       46,   53,   40,   78,   97,   96,   60,   36,   36,   95,
        94,   93,   92,   91,   90,   89,   88,   87,   86,   85,
        84,   83,   82,   81,   80,   79,   76,   75,   74,   73,
        72,   71,   70,   69,   68,   67,   66,   65,   64,   63,
@@ -425,14 +426,14 @@ static yyconst short int yy_chk[153] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    3,    4,   28,   29,   28,    3,    4,   35,   67,
-       29,  101,  100,   67,   96,   35,   99,   99,   94,   92,
+        1,    3,    4,   26,   27,   26,    3,    4,   33,   67,
+      101,   27,  100,   67,   96,   94,   33,   99,   99,   92,
        91,   90,   87,   86,   85,   82,   81,   78,   77,   76,
        74,   73,   72,   71,   69,   68,   66,   64,   63,   62,
        60,   59,   58,   57,   56,   55,   53,   51,   50,   48,
-       47,   44,   41,   39,   38,   34,   33,   32,   31,   30,
+       47,   44,   41,   39,   38,   32,   31,   30,   29,   28,
 
-       27,   26,   25,   20,   19,   18,   17,   16,    7,    5,
+       25,   23,   22,   20,   19,   18,   17,   16,    7,    5,
        98,   98,   98,   98,   98,   98,   98,   98,   98,   98,
        98,   98,   98,   98,   98,   98,   98,   98,   98,   98,
        98,   98,   98,   98,   98,   98,   98,   98,   98,   98,
@@ -466,7 +467,7 @@ char *yytext;
 #include <math.h>	 			
 #define C_COMMENT 1
 
-#line 470 "lex.yy.c"
+#line 471 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -617,10 +618,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 29 "miniPasc.lex"
+#line 30 "miniPasc.lex"
 
 
-#line 624 "lex.yy.c"
+#line 625 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -713,199 +714,204 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 31 "miniPasc.lex"
+#line 32 "miniPasc.lex"
 { BEGIN(C_COMMENT); }
 	YY_BREAK
 case YY_STATE_EOF(C_COMMENT):
-#line 32 "miniPasc.lex"
+#line 33 "miniPasc.lex"
 { fprintf(stderr,"unclosed comment on line :%d\n",yylineno); exit( 1 ); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 33 "miniPasc.lex"
+#line 34 "miniPasc.lex"
 { BEGIN(INITIAL); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 34 "miniPasc.lex"
+#line 35 "miniPasc.lex"
 { }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 35 "miniPasc.lex"
+#line 36 "miniPasc.lex"
 { }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 37 "miniPasc.lex"
+#line 38 "miniPasc.lex"
 /* pas d'actions */
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 38 "miniPasc.lex"
+#line 39 "miniPasc.lex"
 /* pas d'actions */
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 39 "miniPasc.lex"
-++yylineno;
+#line 40 "miniPasc.lex"
+{ }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 40 "miniPasc.lex"
-return program;
+#line 41 "miniPasc.lex"
+{++yylineno;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 41 "miniPasc.lex"
-return procedure;
+#line 42 "miniPasc.lex"
+return program;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 42 "miniPasc.lex"
-return keyword_begin;
+#line 43 "miniPasc.lex"
+return procedure;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 43 "miniPasc.lex"
-return keyword_end;
+#line 44 "miniPasc.lex"
+return keyword_begin;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 44 "miniPasc.lex"
-return keyword_var;
+#line 45 "miniPasc.lex"
+return keyword_end;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 45 "miniPasc.lex"
-return keyword_read;
+#line 46 "miniPasc.lex"
+return keyword_var;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 46 "miniPasc.lex"
-return keyword_write;
+#line 47 "miniPasc.lex"
+return keyword_read;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 47 "miniPasc.lex"
-return keyword_while;
+#line 48 "miniPasc.lex"
+return keyword_write;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 48 "miniPasc.lex"
-return keyword_do;
+#line 49 "miniPasc.lex"
+return keyword_while;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 49 "miniPasc.lex"
-return keyword_if;
+#line 50 "miniPasc.lex"
+return keyword_do;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 50 "miniPasc.lex"
-return keyword_then;
+#line 51 "miniPasc.lex"
+return keyword_if;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 51 "miniPasc.lex"
-return keyword_else;
+#line 52 "miniPasc.lex"
+return keyword_then;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 52 "miniPasc.lex"
-return type_integer;
+#line 53 "miniPasc.lex"
+return keyword_else;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 53 "miniPasc.lex"
-return keyword_array;
+#line 54 "miniPasc.lex"
+return type_integer;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 54 "miniPasc.lex"
-return keyword_of;
+#line 55 "miniPasc.lex"
+return keyword_array;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 55 "miniPasc.lex"
-return opening_brackets;
+#line 56 "miniPasc.lex"
+return keyword_of;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 56 "miniPasc.lex"
-return closing_brackets;
+#line 57 "miniPasc.lex"
+return opening_brackets;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 57 "miniPasc.lex"
-return two_points;
+#line 58 "miniPasc.lex"
+return closing_brackets;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 58 "miniPasc.lex"
-return semicolon;
+#line 59 "miniPasc.lex"
+return two_points;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 59 "miniPasc.lex"
-return comma;
+#line 60 "miniPasc.lex"
+return semicolon;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 60 "miniPasc.lex"
-return opening_parenthesis;
+#line 61 "miniPasc.lex"
+return comma;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 61 "miniPasc.lex"
-return closing_parenthesis;
+#line 62 "miniPasc.lex"
+return opening_parenthesis;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 62 "miniPasc.lex"
-return identifier;
+#line 63 "miniPasc.lex"
+return closing_parenthesis;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 63 "miniPasc.lex"
-return an_integer;
+#line 64 "miniPasc.lex"
+return identifier;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 64 "miniPasc.lex"
-return mulop;
+#line 65 "miniPasc.lex"
+return an_integer;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 65 "miniPasc.lex"
-return addop; 
+#line 66 "miniPasc.lex"
+return mulop;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 66 "miniPasc.lex"
-return affectop;
+#line 67 "miniPasc.lex"
+return addop; 
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 67 "miniPasc.lex"
-return colon;
+#line 68 "miniPasc.lex"
+return affectop;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 69 "miniPasc.lex"
-{fprintf(stderr,"illegal identifier \'%s\' on line :%d\n",yytext,yylineno);}
+return colon;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 71 "miniPasc.lex"
-{fprintf(stderr,"Illegal character \'%s\' on line :%d\n",yytext,yylineno);}
+{fprintf(stderr,"illegal identifier \'%s\' on line :%d\n",yytext,yylineno);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 74 "miniPasc.lex"
+#line 73 "miniPasc.lex"
+{fprintf(stderr,"Illegal character \'%s\' on line :%d\n",yytext,yylineno);}
+	YY_BREAK
+case 39:
+YY_RULE_SETUP
+#line 76 "miniPasc.lex"
 ECHO;
 	YY_BREAK
-#line 909 "lex.yy.c"
+#line 915 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1789,4 +1795,4 @@ int main()
 	return 0;
 	}
 #endif
-#line 74 "miniPasc.lex"
+#line 76 "miniPasc.lex"
