@@ -51,8 +51,9 @@ int flag = 0;
                                                            
 programmes:   program identifier semicolon instruction_composee
 			  |program identifier semicolon liste_declarations 
+			  |program identifier semicolon declaration_methodes
 			  |program identifier semicolon keyword_var liste_declarations instruction_composee
-			  |program identifier semicolon declaration_methodes instruction_composee
+			  |program identifier semicolon declaration_methode instruction_composee
 			  |program identifier semicolon keyword_var liste_declarations declaration_methodes instruction_composee
 			  |error identifier semicolon            {yyerror (" program attendu on line : "); }
 	      	  |program identifier semicolon error liste_declarations instruction_composee		{yyerror ("keyword var attendu on line : "); }
@@ -97,11 +98,10 @@ standard_type: type_integer
 		        |error 		{yyerror ("type attendu on line : "); };
 
 
-declaration_methodes : declaration_methode semicolon declaration_methodes 
-					   |declaration_methode semicolon
-					   |error semicolon declaration_methodes 				{yyerror ("declaration methode attendu on line : "); }
-					   |declaration_methode error declaration_methodes		{yyerror ("[declaration]semicolon attendu on line : "); };
-
+declaration_methodes : declaration_methode declaration_methodes 
+					   |declaration_methode 
+					   |error declaration_methodes 				{yyerror ("declaration methode attendu on line : "); }
+					   
 
 declaration_methode: entete_methode semicolon instruction_composee
 					 |entete_methode semicolon keyword_var liste_declarations  instruction_composee  
