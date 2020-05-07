@@ -47,12 +47,14 @@ int flag = 0;
 %%
                                                            
 programmes:   program identifier semicolon instruction_composee
+			  |program identifier semicolon liste_declarations 
+			  |declaration_methode
 			  |program identifier semicolon keyword_var liste_declarations instruction_composee
 			  |program identifier semicolon declaration_methodes instruction_composee
 			  |program identifier semicolon keyword_var liste_declarations declaration_methodes instruction_composee
 			  |error identifier semicolon            {yyerror (" program attendu on line : "); }
-	      |program identifier semicolon error liste_declarations instruction_composee		{yyerror ("keyword var attendu on line : "); }
-	      |program identifier semicolon error liste_declarations declaration_methodes instruction_composee  {yyerror ("keyword var attendu on line : "); }
+	      	  |program identifier semicolon error liste_declarations instruction_composee		{yyerror ("keyword var attendu on line : "); }
+	      	  |program identifier semicolon error liste_declarations declaration_methodes instruction_composee  {yyerror ("keyword var attendu on line : "); }
               |program error semicolon               {yyerror (" identifier attendu on line : "); } 
               |program identifier error              {yyerror (" point virgule attendu on line : "); }
               |program identifier semicolon error    {yyerror (" instruction composee attendu on line");};
@@ -92,21 +94,22 @@ standard_type: type_integer
 		       |error 		{yyerror ("type integer attendu on line : "); };
 
 
-declaration_methodes : declaration_methodes semicolon declaration_methode
-					   |declaration_methode
-					   |error semicolon declaration_methode 				{yyerror ("declaration methode attendu on line : "); }
-					   |declaration_methodes error declaration_methode 		{yyerror ("[declaration]semicolon attendu on line : "); };
+declaration_methodes : declaration_methode semicolon declaration_methodes 
+					   |declaration_methode semicolon
+					   |error semicolon declaration_methodes 				{yyerror ("declaration methode attendu on line : "); }
+					   |declaration_methode error declaration_methodes		{yyerror ("[declaration]semicolon attendu on line : "); };
 
 
 declaration_methode: entete_methode instruction_composee
-					 |entete_methode liste_declarations instruction_composee
+					 |entete_methode semicolon keyword_var liste_declarations  instruction_composee  
+					 |entete_methode semicolon keyword_var  liste_declarations
+					 
 
-
-entete_methode: procedure identifier semicolon
-				|procedure identifier arguments semicolon
-				|error identifier semicolon 		{yyerror ("procedure attendu on line : "); }
-				|procedure error semicolon 			{yyerror ("identifier attendu on line : "); }
-				|procedure identifier error 		{yyerror ("[entete]semicolon attendu on line : "); };
+entete_methode: procedure identifier 
+				|procedure identifier arguments 
+				|error identifier  		{yyerror ("procedure attendu on line : "); }
+				|procedure error  			{yyerror ("identifier attendu on line : "); }
+				|procedure identifier  		{yyerror ("[entete]semicolon attendu on line : "); };
 
 
 arguments: opening_parenthesis liste_parametres closing_parenthesis

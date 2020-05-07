@@ -5,7 +5,12 @@
  		
  #include "miniPasc.tab.h"	                                                                         	
  /* Local stuff we need here... */	
-#include <math.h>	 			
+#include <math.h>	
+
+#define		LE		500
+#define		GE		501
+#define		NE		502
+
 %}
 
 
@@ -14,7 +19,7 @@
 lettre [A-Za-z]
 chiffre [1-9]
 sep ["_"]
-symbols ["?", "!",";", ",","/","*","+","'"]
+symbols ["?", "!",";", ",","/","*","+","'",">","<"]
 id {lettre}({lettre}|{chiffre}|{sep})*
 iderr ({chiffre}|{sep})({lettre}|{chiffre}|{sep})*
 delim [\t]
@@ -64,7 +69,6 @@ message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
 {id}                                                                                return identifier;
 {integer}																			return an_integer;
 "*"|"/"																				return mulop;
-"-"|"+"                                                         			        return addop; 
 ":="	                                                                            return affectop;
 ":"																					return colon;
 

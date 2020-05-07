@@ -1,7 +1,9 @@
-program Hello ;
-var 
-tawfik : integer;
-tawfik2 : integer;
-begin 
-tawfik:=3;
+procedure NumeroFoisDix( numero : integer ) ;
+var
+tawfik1 : integer ; 
+tawfik2 : integer ;
+begin
+tawfik1:=3;
+tawfik2:=3;
+tawfik1+tawfik2;
 end
