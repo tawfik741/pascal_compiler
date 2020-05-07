@@ -1,0 +1,6 @@
+program Hello ;
+var 
+tawfik : integer;
+begin 
+tawfik:=3;
+end
