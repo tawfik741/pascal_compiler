@@ -18,6 +18,7 @@ int flag = 0;
 %token keyword_array
 %token keyword_of
 %token type_integer
+%token type_string
 %token procedure
 %token keyword_begin
 %token keyword_end
@@ -35,7 +36,9 @@ int flag = 0;
 %token closing_brackets
 %left mulop
 %left addop
+%left compop
 %token an_integer
+%token a_string
 %token two_points
 %token comma
 %token colon
@@ -89,7 +92,8 @@ type:standard_type
 
 
 standard_type: type_integer
-		       |error 		{yyerror ("type integer attendu on line : "); };
+				|type_string
+		        |error 		{yyerror ("type attendu on line : "); };
 
 
 declaration_methodes : declaration_methodes semicolon declaration_methode
@@ -134,10 +138,13 @@ instruction: lvalue affectop expression
 			 |lvalue error expression 		{yyerror ("affect op attendu on line : ");}		
 			 | appel_methode
 			 |instruction_composee
+			 |keyword_if expression keyword_then instruction
 			 |keyword_if expression keyword_then instruction keyword_else instruction
 			 |error expression keyword_then instruction keyword_else instruction   {yyerror ("keyword_if attendu on line : ");}
 			 |keyword_if expression error instruction keyword_else instruction 	   {yyerror ("keyword_then attendu on line : ");}
 			 |keyword_if expression keyword_then instruction error instruction 	   {yyerror ("keyword_else attendu on line : ");}
+			 |error expression keyword_then instruction							   {yyerror ("keyword_if attendu on line : ");}
+			 |keyword_if expression error instruction							   {yyerror ("keyword_then attendu on line : ");}
 			 |keyword_while expression keyword_do instruction
 			 |error expression keyword_do instruction 		{yyerror ("keyword_while attendu on line : ");}
 			 |keyword_while expression error instruction 	{yyerror ("keyword_do attendu on line : ");}
@@ -168,10 +175,12 @@ liste_expressions: liste_expressions comma expression
 
 expression: facteur
 			|facteur addop facteur
-			|facteur mulop facteur;
+			|facteur mulop facteur
+			|facteur compop facteur;
 
 
-facteur: identifier 
+facteur: identifier
+		 |a_string
 		 |identifier opening_brackets expression closing_brackets
 		 |identifier opening_brackets expression error 		{yyerror ("closing_brackets attendu on line : ");}
 		 |an_integer

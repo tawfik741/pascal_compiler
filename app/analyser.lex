@@ -5,12 +5,13 @@
 lettre [A-Za-z]
 chiffre [1-9]
 sep ["_"]
-symbols ["?", "!",";", ",","/","*","+","'"]
+symbols ["?", "!",";", ",","/","*","+","'","="]
 id {lettre}({lettre}|{chiffre}|{sep})*
 iderr ({chiffre}|{sep})({lettre}|{chiffre}|{sep})*
 delim [\t]
 bl {delim}+
 integer ("-")?{chiffre}+
+string (\"[^\"]*\")
 ouvrante  (\()
 fermante  (\))
 message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
@@ -53,9 +54,11 @@ message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
 {fermante}                                                                          printf(" closing_parenthesis");
 {id}                                                                                printf(" identifier");
 {integer}																			printf(" an_integer");
+{string}																			printf(" a_string");
 "*"|"/"																				printf(" mulop");
 "-"|"+"                                                         			        printf(" addop"); 
 ":="	                                                                            printf(" affectop");
+"="	                                                                            printf(" eqop");
 ":"																					printf(" colon");
 
 {iderr}              {fprintf(stderr,"illegal identifier \'%s\' on line :%d\n",yytext,yylineno);}
