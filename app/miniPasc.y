@@ -60,7 +60,7 @@ programmes:   program identifier semicolon instruction_composee
 
 liste_declarations : liste_declarations declaration
 					 |declaration;
-					
+
 
 declaration: declaration_corps semicolon
 			|declaration_corps error 	{yyerror ("[declaration]semicolon attendu on line : "); };		
@@ -124,10 +124,10 @@ instruction_composee	: keyword_begin keyword_end
 						  |error keyword_end 		{yyerror ("keyword_end attendu on line : ");};
 
 
-liste_instructions: instruction semicolon liste_instructions  
-					|instruction semicolon
+liste_instructions: liste_instructions semicolon instruction
+					|instruction  
 					|error semicolon instruction 				{yyerror ("instruction attendu on line : ");}
-					|instruction error  liste_instructions		{yyerror ("[instructions]semicolon attendu on line : ");};
+					|liste_instructions error instruction 		{yyerror ("[instructions]semicolon attendu on line : ");};
 
 
 instruction: lvalue affectop expression

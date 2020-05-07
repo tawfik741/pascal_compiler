@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
      fclose(yyin);
 }
 
-int yywrap()
+yywrap()
 {
 	return(1);
 }
