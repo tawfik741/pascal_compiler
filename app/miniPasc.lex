@@ -13,18 +13,18 @@
 
 %}
 
-
 %option yylineno 
 
 lettre [A-Za-z]
 chiffre [1-9]
 sep ["_"]
-symbols ["?", "!",";", ",","/","*","+","'",">","<"]
+symbols ["?", "!",";", ",","/","*","+","'","="]
 id {lettre}({lettre}|{chiffre}|{sep})*
 iderr ({chiffre}|{sep})({lettre}|{chiffre}|{sep})*
 delim [\t]
 bl {delim}+
 integer ("-")?{chiffre}+
+string (\"[^\"]*\")
 ouvrante  (\()
 fermante  (\))
 message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
@@ -57,6 +57,7 @@ message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
 [tT][hH][eE][nN]																	return keyword_then;
 [eE][lL][sS][eE]																	return keyword_else;
 [iI][nN][tT][eE][gG][eE][rR]														return type_integer;
+[sS][tT][rR][iI][nN][gG]														    return type_string;
 [aA][rR][rR][aA][yY]																return keyword_array;
 [oO][fF]																			return keyword_of;
 "["																					return opening_brackets;
@@ -68,9 +69,11 @@ message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
 {fermante}                                                                          return closing_parenthesis;
 {id}                                                                                return identifier;
 {integer}																			return an_integer;
+{string}																			return a_string;
 "*"|"/"																				return mulop;
 ":="	                                                                            return affectop;
 ":"																					return colon;
+">"|"<"|">="|"<="|"="                                                              return compop;
 
 {iderr}              {fprintf(stderr,"illegal identifier \'%s\' on line :%d\n",yytext,yylineno);}
 

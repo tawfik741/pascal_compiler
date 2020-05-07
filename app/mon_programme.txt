@@ -1,9 +1,11 @@
-procedure NumeroFoisDix( numero : integer ) ;
-var
-tawfik1 : integer ; 
-tawfik2 : integer ;
-begin
-tawfik1:=3;
-tawfik2:=3;
-tawfik1+tawfik2;
+program Hello ;
+var 
+tawfik : integer;
+tawfik2 : integer;
+tawfik2 : string;
+tawfik2 : array[1..5] of string;
+begin 
+tawfik:=3;
+if color = 3 then write("5");
+write("5");
 end
