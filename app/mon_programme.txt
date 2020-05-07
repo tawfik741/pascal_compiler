@@ -1,7 +1,8 @@
 program Hello ;
+
+prodcedure testing ; 
 var 
 tawfik : integer;
-tawfik2 : integer;
 tawfik2 : string;
 tawfik2 : array[1..5] of string;
 begin 
