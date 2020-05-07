@@ -51,7 +51,6 @@ int flag = 0;
                                                            
 programmes:   program identifier semicolon instruction_composee
 			  |program identifier semicolon liste_declarations 
-			  |declaration_methode
 			  |program identifier semicolon keyword_var liste_declarations instruction_composee
 			  |program identifier semicolon declaration_methodes instruction_composee
 			  |program identifier semicolon keyword_var liste_declarations declaration_methodes instruction_composee
@@ -104,10 +103,10 @@ declaration_methodes : declaration_methode semicolon declaration_methodes
 					   |declaration_methode error declaration_methodes		{yyerror ("[declaration]semicolon attendu on line : "); };
 
 
-declaration_methode: entete_methode instruction_composee
+declaration_methode: entete_methode semicolon instruction_composee
 					 |entete_methode semicolon keyword_var liste_declarations  instruction_composee  
 					 |entete_methode semicolon keyword_var  liste_declarations
-					 
+					 |entete_methode semicolon
 
 entete_methode: procedure identifier 
 				|procedure identifier arguments 
