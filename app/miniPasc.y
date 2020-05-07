@@ -47,10 +47,12 @@ int flag = 0;
 %%
                                                            
 programmes:   program identifier semicolon instruction_composee
-			  |program identifier semicolon liste_declarations instruction_composee
+			  |program identifier semicolon keyword_var liste_declarations instruction_composee
 			  |program identifier semicolon declaration_methodes instruction_composee
-			  |program identifier semicolon liste_declarations declaration_methodes instruction_composee
+			  |program identifier semicolon keyword_var liste_declarations declaration_methodes instruction_composee
 			  |error identifier semicolon            {yyerror (" program attendu on line : "); }
+	      |program identifier semicolon error liste_declarations instruction_composee		{yyerror ("keyword var attendu on line : "); }
+	      |program identifier semicolon error liste_declarations declaration_methodes instruction_composee  {yyerror ("keyword var attendu on line : "); }
               |program error semicolon               {yyerror (" identifier attendu on line : "); } 
               |program identifier error              {yyerror (" point virgule attendu on line : "); }
               |program identifier semicolon error    {yyerror (" instruction composee attendu on line");};
@@ -60,9 +62,8 @@ liste_declarations : liste_declarations declaration
 					 |declaration;
 					
 
-declaration: keyword_var declaration_corps semicolon
-			|error declaration_corps semicolon 		{yyerror ("keyword var attendu on line : "); }
-			|keyword_var declaration_corps error 	{yyerror ("[declaration]semicolon attendu on line : "); };		
+declaration: declaration_corps semicolon
+			|declaration_corps error 	{yyerror ("[declaration]semicolon attendu on line : "); };		
 
 
 declaration_corps: liste_identificateurs colon type

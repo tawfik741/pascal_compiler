@@ -1,6 +1,7 @@
 program Hello ;
 var 
 tawfik : integer;
+tawfik2 : integer;
 begin 
 tawfik:=3;
 end
