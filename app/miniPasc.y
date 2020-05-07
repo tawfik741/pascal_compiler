@@ -119,9 +119,9 @@ arguments: opening_parenthesis liste_parametres closing_parenthesis
 		   |opening_parenthesis liste_parametres error 		{yyerror ("closing_parenthesis attendu on line : "); };
 
 
-liste_parametres: liste_parametres semicolon declaration_corps
+liste_parametres: liste_parametres comma declaration_corps
 			   	  |declaration_corps
-			   	  |error semicolon declaration_corps 		{yyerror ("parametre attendu on line : "); }
+			   	  |error comma declaration_corps 		{yyerror ("parametre attendu on line : "); }
 			   	  |liste_parametres error declaration_corps 	{yyerror ("[parametres]semicolon attendu on line : "); };
 
 

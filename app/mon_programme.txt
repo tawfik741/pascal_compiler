@@ -1,5 +1,5 @@
 program Hello ;
-procedure testing (wassim : string);
+procedure testing (wassim : string , wassim1 : integer);
     var test1 : integer;
     begin
         test1:=3 ;
