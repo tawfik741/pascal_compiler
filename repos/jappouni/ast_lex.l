@@ -32,7 +32,7 @@
 #define MAXSTR 20
 
 static char KeyWord[][MAXSTR]=
-{
+{>)
  "PROGRAM",
  "BEGIN",
  "END",

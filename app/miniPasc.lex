@@ -5,7 +5,12 @@
  		
  #include "miniPasc.tab.h"	                                                                         	
  /* Local stuff we need here... */	
-#include <math.h>	 			
+#include <math.h>	
+
+#define		LE		500
+#define		GE		501
+#define		NE		502
+
 %}
 
 %option yylineno 
@@ -66,7 +71,6 @@ message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
 {integer}																			return an_integer;
 {string}																			return a_string;
 "*"|"/"																				return mulop;
-"-"|"+"                                                         			        return addop; 
 ":="	                                                                            return affectop;
 ":"																					return colon;
 ">"|"<"|">="|"<="|"="                                                              return compop;
