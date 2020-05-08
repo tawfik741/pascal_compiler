@@ -74,7 +74,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
- 			
+#include "semantique.cpp"
 int yyerror(char const *msg);	
 int yylex(void);
 extern int yylineno;

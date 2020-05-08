@@ -3,7 +3,7 @@ Implementation of lexical & semantics analysis in compilation principle, given t
 
 ### Compiling
 ```markdown
-g++ -o main.o main.cpp scanner.cpp
+    g++ -o main.o main.cpp scanner.cpp
 ```
 ### Running
 ```markdown
