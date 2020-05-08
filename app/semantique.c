@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-typedef enum Class { variable,procedure,parametre } Class;
+typedef enum Class { variable_c,procedure_c,parametre_c } Class;
 
 
 typedef
@@ -64,7 +64,7 @@ int read_file(char* file_name){
     return 0;
 }
 
-void ajouterSymbole(char * identif, char * type , Class  c , int nb_parametres , int is_used , int is_init ) {
+void ajouter_symbole(char * identif, char * type , Class  c , int nb_parametres , int is_used , int is_init ) {
     if (sommet >= maxDico)
         agrandirDico();
     //id
@@ -88,14 +88,14 @@ void ajouterSymbole(char * identif, char * type , Class  c , int nb_parametres ,
     
     sommet++ ;
 }
-check
-
+/*
 int main(){
     creerDico();
     printf("debug\n");
     
-    ajouterSymbole("tawfik","entier",procedure,4,0,0);
+    ajouter_symbole("tawfik","entier",procedure,4,0,0);
     printf("%d\n",dico[0].nb_parametres);
     printf("%d\n",dico[0].is_init);
     //read_file("hello.txt");
 }
+*/

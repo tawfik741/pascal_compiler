@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "semantique.c"
 int yyerror(char const *msg);	
 int yylex(void);
 extern int yylineno;
@@ -12,7 +13,10 @@ int flag = 0;
 
 %token program 
 %token semicolon
-%token identifier
+
+%type <char *> 'identifier'
+%token 'identifier'
+
 %token keyword_var
 %token keyword_array
 %token keyword_of
@@ -70,12 +74,13 @@ declaration: declaration_corps semicolon
 			|declaration_corps error 	{yyerror ("[declaration]semicolon attendu on line : "); };		
 
 
-declaration_corps: liste_identificateurs colon type
+declaration_corps: liste_identificateurs colon type 
 				   |liste_identificateurs error type 		{yyerror ("colon attendu on line : "); };
 
 
 liste_identificateurs: liste_identificateurs comma identifier
-					   |identifier
+					   |identifier									{ajouter_symbole($1,"",0,0,0,0);
+					   													yyerrok;}
 					   |error comma identifier 						{yyerror ("identifier attendu on line : "); }
 					   |liste_identificateurs error identifier 		{yyerror ("comma attendu on line : "); }
 					   |liste_identificateurs comma error 			{yyerror ("identifier attendu on line : "); };
