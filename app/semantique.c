@@ -22,6 +22,10 @@ struct {
 ENTREE_DICO *dico;
 int maxDico, sommet, base;
 
+void erreurFatale(char * message) {
+    fprintf(stderr, "%s\n", message);
+    exit(-1);
+}
 
 void creerDico(void) {
     maxDico = TAILLE_INITIALE_DICO;
@@ -38,10 +42,7 @@ void agrandirDico(void) {
         erreurFatale("Erreur interne (pas assez de mémoire)");
 }
 
-void erreurFatale(char * message) {
-    fprintf(stderr, "%s\n", message);
-    exit(-1);
-}
+
 
 
 void ajouterSymbole(char * identif, char * type) {
