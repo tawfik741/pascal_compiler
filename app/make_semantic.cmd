@@ -1,3 +1,3 @@
-g++ semantique.cpp -o semantic.o
+gcc semantique.c -o semantic.o
 semantic.o
 PAUSE
