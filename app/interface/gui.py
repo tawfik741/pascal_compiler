@@ -2,19 +2,20 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(700, 600)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Gui(object):
+    def setupUi(self, Window):
+        Window.setObjectName("Window")
+        Window.resize(700, 600)
+        
+        self.centralwidget = QtWidgets.QWidget(Window)
         self.centralwidget.setObjectName("centralwidget")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
         
         # text layout
-        self.textLayout = QtWidgets.QVBoxLayout()
+        self.textLayout = QtWidgets.QHBoxLayout()
         self.textLayout.setContentsMargins(20, 20, 20, 0)
         self.textLayout.setObjectName("textLayout")
         #code label
@@ -38,9 +39,9 @@ class Ui_MainWindow(object):
         self.resultText = QtWidgets.QTextEdit(self.centralwidget)
         self.resultText.setObjectName("resultText")
         self.textLayout.addWidget(self.resultText)
-        self.horizontalLayout.addLayout(self.textLayout)
+        self.verticalLayout.addLayout(self.textLayout)
         #button layout
-        self.buttonLayout = QtWidgets.QVBoxLayout()
+        self.buttonLayout = QtWidgets.QHBoxLayout()
         self.buttonLayout.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
         self.buttonLayout.setContentsMargins(-1, -1, 10, -1)
         self.buttonLayout.setSpacing(0)
@@ -73,24 +74,24 @@ class Ui_MainWindow(object):
         self.buttonLayout.addWidget(self.compileButton)        
         self.compileButton.clicked.connect(self.runCompile)
 
-        self.horizontalLayout.addLayout(self.buttonLayout)
-        self.horizontalLayout_2.addLayout(self.horizontalLayout)
-        MainWindow.setCentralWidget(self.centralwidget)
+        self.verticalLayout.addLayout(self.buttonLayout)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
+        Window.setCentralWidget(self.centralwidget)
 
         
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(Window)
+        QtCore.QMetaObject.connectSlotsByName(Window)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, Window):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.codeLabel.setText(_translate("MainWindow", "Code goes here"))
-        self.codeText.setToolTip(_translate("MainWindow", "Type Code here"))
-        self.resutLabel.setText(_translate("MainWindow", "Result"))
-        self.newButton.setText(_translate("MainWindow", "New"))
-        self.analyseButton.setText(_translate("MainWindow", "Analyse"))
-        self.compileButton.setText(_translate("MainWindow", "Compile"))
+        Window.setWindowTitle(_translate("Window", "Window"))
+        self.codeLabel.setText(_translate("Window", "Code: "))
+        self.codeText.setToolTip(_translate("Window", "Type Code here"))
+        self.resutLabel.setText(_translate("Window", "Output: "))
+        self.newButton.setText(_translate("Window", "New"))
+        self.analyseButton.setText(_translate("Window", "Analyse"))
+        self.compileButton.setText(_translate("Window", "Compile"))
     
     def new (self):
         self.codeText.clear()
@@ -109,8 +110,9 @@ class Ui_MainWindow(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    Window = QtWidgets.QMainWindow()
+    ui = Gui()
+    ui.setupUi(Window)
+    Window.setWindowTitle('Pascal Compiler')
+    Window.show()
     sys.exit(app.exec_())
