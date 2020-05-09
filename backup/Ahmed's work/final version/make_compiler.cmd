@@ -1,5 +1,5 @@
-flex miniPascal.lex
-bison %-d miniPascal.y
-gcc lex.yy.c miniPasc.tab.c -o pascal_compile
+flex.exe miniPascal.lex
+bison.exe %-d miniPascal.y
+gcc lex.yy.c miniPascal.tab.c -o pascal_compile
 pascal_compile mon_programme.txt
 PAUSE

@@ -1,6 +1,6 @@
 PROGRAM test ; 
 VAR 
-a , b : integer ; 
+a , b : integrer ; 
 BEGIN
-write("test");
+
 END
