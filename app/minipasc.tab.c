@@ -2249,7 +2249,7 @@ extern FILE *yyin;
 
 int main(int argc, char *argv[])
 {
- printf("\n analyse syntaxique\n");
+ printf("\n STARTING ANALYSIS\n");
  argc--, argv++;	/* ignorer le 1er paramétre: le nom du fichier C actuel */
 	if(argc > 0) {
 		yyin = fopen(argv[0], "r");
@@ -2261,8 +2261,8 @@ int main(int argc, char *argv[])
  create_operation();
  print_dict();
  yyparse();
- if(flag == 0 ) printf("\n code correct");
- else printf("\n code incorrect");
+ if((flag == 0)&&(flag1 ==0)) printf("\nCODE CORRECT");
+ else printf("\n CODE INCORRECT");
 
  return 0 ;
 }

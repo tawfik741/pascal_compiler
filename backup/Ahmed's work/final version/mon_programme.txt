@@ -1,5 +1,5 @@
 program test ; 
-var a  : integer ; 
+var a : integer ; 
 begin 
 test := 3 ; 
 end 

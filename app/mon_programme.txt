@@ -1,7 +1,6 @@
-program test ; 
-var 
-test1 , test2 : integer ; 
-BEGIN 
-
-test := 3 ; 
-end 
+PROGRAM test ; 
+VAR 
+a , b : integer ; 
+BEGIN
+write("test");
+END

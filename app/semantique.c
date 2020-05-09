@@ -363,7 +363,7 @@ void affectation(int yylineno){
 
 void print_dict(){
 	Node* move = dict;
-	printf("Table des symboles : \n");
+	printf("TABLE DES SYMBOLES INITIALISEE : \n");
 	while(move !=NULL){
 		if(move->num_args == -1){
 			printf("Variable %s initialise: %d utilise: %d \n",move->name, move->test_init, move->test_use);	
