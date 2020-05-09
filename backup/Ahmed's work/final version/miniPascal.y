@@ -4,8 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "semantique.c"
-
-
+ 			
 int yyerror(char const *msg);	
 int yylex(void);
 extern int yylineno;
@@ -15,17 +14,16 @@ int flag = 0;
 
 %token program 
 %token semicolon
-
-%union  {
-  char * string;
+%union 
+{
+        char* string;
 }
-%token < string > identifier
 
+%token <string> identifier
 %token keyword_var
 %token keyword_array
 %token keyword_of
 %token type_integer
-%token type_string
 %token procedure
 %token keyword_begin
 %token keyword_end
@@ -43,9 +41,7 @@ int flag = 0;
 %token closing_brackets
 %left mulop
 %left addop
-%left compop
 %token an_integer
-%token a_string
 %token two_points
 %token comma
 %token colon
@@ -57,33 +53,30 @@ int flag = 0;
 %%
                                                            
 programmes:   program identifier semicolon instruction_composee 
-			  |program identifier semicolon liste_declarations 
-			  |program identifier semicolon declaration_methodes
-			  |program identifier semicolon keyword_var liste_declarations instruction_composee
-			  |program identifier semicolon declaration_methode instruction_composee
-			  |program identifier semicolon keyword_var liste_declarations declaration_methodes instruction_composee
+			  |program identifier semicolon liste_declarations instruction_composee 
+			  |program identifier semicolon declaration_methodes instruction_composee 
+			  |program identifier semicolon liste_declarations declaration_methodes instruction_composee
 			  |error identifier semicolon            {yyerror (" program attendu on line : "); }
-	      	  |program identifier semicolon error liste_declarations instruction_composee		{yyerror ("keyword var attendu on line : "); }
-	      	  |program identifier semicolon error liste_declarations declaration_methodes instruction_composee  {yyerror ("keyword var attendu on line : "); }
               |program error semicolon               {yyerror (" identifier attendu on line : "); } 
               |program identifier error              {yyerror (" point virgule attendu on line : "); }
               |program identifier semicolon error    {yyerror (" instruction composee attendu on line");};
-			  |identifier {printf($1);}
+
 
 liste_declarations : liste_declarations declaration
 					 |declaration;
 
 
-declaration: declaration_corps semicolon
-			|declaration_corps error 	{yyerror ("[declaration]semicolon attendu on line : "); };		
+declaration: keyword_var declaration_corps semicolon
+			|error declaration_corps semicolon 		{yyerror ("keyword var attendu on line : "); }
+			|keyword_var declaration_corps error 	{yyerror ("semicolon attendu on line : "); };		
 
 
-declaration_corps: liste_identificateurs colon type 
+declaration_corps: liste_identificateurs colon type
 				   |liste_identificateurs error type 		{yyerror ("colon attendu on line : "); };
 
 
-liste_identificateurs: liste_identificateurs comma identifier		{add_var_identifier($3, yylineno);}
-					   |identifier									{set_args();add_var_identifier($1, yylineno);}
+liste_identificateurs: liste_identificateurs comma identifier 		{add_var_identifier($3, yylineno);}
+					   |identifier 									{add_var_identifier($1, yylineno);}
 					   |error comma identifier 						{yyerror ("identifier attendu on line : "); }
 					   |liste_identificateurs error identifier 		{yyerror ("comma attendu on line : "); }
 					   |liste_identificateurs comma error 			{yyerror ("identifier attendu on line : "); };
@@ -101,58 +94,67 @@ type:standard_type
 
 
 standard_type: type_integer
-				|type_string
-		        |error 		{yyerror ("type attendu on line : "); };
+		       |error 		{yyerror ("type integer attendu on line : "); };
 
 
-declaration_methodes : declaration_methode declaration_methodes 
-					   |declaration_methode 
-					   |error declaration_methodes 				{yyerror ("declaration methode attendu on line : "); }
-					   
+declaration_methodes : declaration_methodes semicolon declaration_methode
+					   |declaration_methode
+					   |error semicolon declaration_methode 				{yyerror ("declaration methode attendu on line : "); }
+					   |declaration_methodes error declaration_methode 		{yyerror ("semicolon attendu on line : "); };
 
-declaration_methode: entete_methode semicolon instruction_composee
-					 |entete_methode semicolon keyword_var liste_declarations  instruction_composee  
-					 |entete_methode semicolon keyword_var  liste_declarations
-					 |entete_methode semicolon
 
-entete_methode: procedure identifier {add_proc_identifier($2, yylineno);}
-				|procedure identifier arguments {add_proc_identifier($2, yylineno);}
-				|error identifier  		{yyerror ("procedure attendu on line : "); }
-				|procedure error  			{yyerror ("identifier attendu on line : "); }
-				
+declaration_methode: entete_methode instruction_composee
+					 |entete_methode liste_declarations instruction_composee
 
-arguments: opening_parenthesis liste_parametres closing_parenthesis
+
+entete_methode: procedure identifier semicolon				{add_proc_identifier($2, yylineno);}
+				|procedure identifier arguments semicolon	{add_proc_identifier($2, yylineno);}
+				|error identifier semicolon 				{yyerror ("procedure attendu on line : "); }
+				|procedure error semicolon 					{yyerror ("identifier attendu on line : "); }
+				|procedure identifier error 			{yyerror ("semicolon attendu on line : "); };
+
+
+arguments: opening_parenthesis liste_parametres closing_parenthesis   
 		   |opening_parenthesis liste_parametres error 		{yyerror ("closing_parenthesis attendu on line : "); };
 
 
-liste_parametres: liste_parametres comma declaration_corps
-			   	  |declaration_corps
-			   	  |error comma declaration_corps 		{yyerror ("parametre attendu on line : "); }
-			   	  |liste_parametres error declaration_corps 	{yyerror ("[parametres]semicolon attendu on line : "); };
+liste_parametres: liste_parametres semicolon declaration_corps_args   
+			   	  |declaration_corps_args							 
+			   	  |error semicolon declaration_corps_args 	    	{yyerror ("parametre attendu on line : "); }
+			   	  |liste_parametres error declaration_corps_args 	{yyerror ("semicolon attendu on line : "); };
 
 
-instruction_composee	: keyword_begin keyword_end		{reset_branch();}
-						  |keyword_begin liste_instructions keyword_end		{reset_branch();}
-						  |error keyword_end 		{yyerror ("keyword_end attendu on line : ");};
+declaration_corps_args: liste_identificateurs_args colon type
+				       |liste_identificateurs_args error type 		{yyerror ("colon attendu on line : "); };
 
 
-liste_instructions: instruction semicolon liste_instructions
-					|instruction semicolon 
+liste_identificateurs_args: liste_identificateurs_args comma identifier 		{add_var_identifier($3, yylineno);}
+					       |identifier 											{set_args();add_var_identifier($1, yylineno);}
+					       |error comma identifier 								{yyerror ("identifier attendu on line : "); }
+					       |liste_identificateurs_args error identifier 		{yyerror ("comma attendu on line : "); }
+					       |liste_identificateurs_args comma error 				{yyerror ("identifier attendu on line : "); };
+
+
+
+instruction_composee	: keyword_begin keyword_end			{reset_branch();}		
+						  |keyword_begin liste_instructions keyword_end {reset_branch();}
+						  |error keyword_end 			{yyerror ("keyword_begin attendu on line : ");};
+
+
+liste_instructions: liste_instructions semicolon instruction
+					|instruction  
 					|error semicolon instruction 				{yyerror ("instruction attendu on line : ");}
-					|instruction error liste_instructions  		{yyerror ("[instructions]semicolon attendu on line : ");};
+					|liste_instructions error instruction 		{yyerror ("semicolon attendu on line : ");};
 
 
-instruction: lvalue affectop expression		{affectation(yylineno);}
+instruction: lvalue affectop expression 	{affectation(yylineno);}
 			 |lvalue error expression 		{yyerror ("affect op attendu on line : ");}		
-			 | appel_methode				{printf("method call\n");}
+			 | appel_methode 				{printf("appel meth\n");}
 			 |instruction_composee
-			 |keyword_if expression keyword_then instruction
 			 |keyword_if expression keyword_then instruction keyword_else instruction
 			 |error expression keyword_then instruction keyword_else instruction   {yyerror ("keyword_if attendu on line : ");}
 			 |keyword_if expression error instruction keyword_else instruction 	   {yyerror ("keyword_then attendu on line : ");}
 			 |keyword_if expression keyword_then instruction error instruction 	   {yyerror ("keyword_else attendu on line : ");}
-			 |error expression keyword_then instruction							   {yyerror ("keyword_if attendu on line : ");}
-			 |keyword_if expression error instruction							   {yyerror ("keyword_then attendu on line : ");}
 			 |keyword_while expression keyword_do instruction
 			 |error expression keyword_do instruction 		{yyerror ("keyword_while attendu on line : ");}
 			 |keyword_while expression error instruction 	{yyerror ("keyword_do attendu on line : ");}
@@ -166,12 +168,12 @@ instruction: lvalue affectop expression		{affectation(yylineno);}
 			 |keyword_read opening_parenthesis liste_expressions error 	{yyerror ("closing_parenthesis attendu on line : ");};
 
 
-lvalue: identifier
-		|identifier opening_brackets expression closing_brackets;
+lvalue: identifier     {check_identifier($1, yylineno);}
+		|identifier opening_brackets expression closing_brackets  {check_identifier($1, yylineno);};
 
 
-appel_methode: identifier opening_parenthesis closing_parenthesis {check_identifier($1, yylineno);}
-               |identifier opening_parenthesis liste_expressions closing_parenthesis {check_identifier($1, yylineno);}
+appel_methode: identifier opening_parenthesis closing_parenthesis  {check_identifier($1, yylineno);}
+               |identifier opening_parenthesis liste_expressions closing_parenthesis  {check_identifier($1, yylineno);}
                |error opening_parenthesis closing_parenthesis 		{yyerror ("identifier attendu on line : ");};
 
 
@@ -182,19 +184,17 @@ liste_expressions: liste_expressions comma expression
 
 
 expression: facteur
-			|facteur addop facteur	{mull_add_op(yylineno);}
-			|facteur mulop facteur	{mull_add_op(yylineno);}
-			|facteur compop facteur	{mull_add_op(yylineno);}
+			|facteur addop facteur  {mull_add_op(yylineno);}
+			|facteur mulop facteur  {mull_add_op(yylineno);};
 
 
-facteur: identifier {check_identifier($1, yylineno);}
-		 |identifier opening_brackets expression closing_brackets {check_identifier($1, yylineno);}
+facteur: identifier    {check_identifier($1, yylineno);}
+		 |identifier opening_brackets expression closing_brackets   {check_identifier($1, yylineno);}
 		 |identifier opening_brackets expression error 		{yyerror ("closing_brackets attendu on line : ");}
+		 |an_integer	{add_int_to_operation();}
 		 |opening_parenthesis expression closing_parenthesis
 		 |opening_parenthesis expression error 		{yyerror ("closing_parenthesis attendu on line : ");};
-		 |a_string
-		 |an_integer	{add_int_to_operation();}
-		 
+
 
 
 %% 
@@ -212,7 +212,8 @@ extern FILE *yyin;
 
 int main(int argc, char *argv[])
 {
- printf("\n analyse syntaxique\n");
+ printf("\n analyse lexicale & syntaxique & semantique : \n");
+
  argc--, argv++;	/* ignorer le 1er paramétre: le nom du fichier C actuel */
 	if(argc > 0) {
 		yyin = fopen(argv[0], "r");
@@ -222,10 +223,10 @@ int main(int argc, char *argv[])
 	}
  create_dict();
  create_operation();
- print_dict();
  yyparse();
- if(flag == 0 ) printf("\n code correct");
- else printf("\n code incorrect");
+ print_dict();
+ if((flag == 0)&&(flag1 ==0)) printf("\n ==> code correct");
+ else printf("\n ==> code incorrect");
 
  return 0 ;
 }

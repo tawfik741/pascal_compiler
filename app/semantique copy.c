@@ -389,32 +389,32 @@ void print_operation(){
 	}
 }
 
-/*
-main(){
+
+/*main(){
 	create_dict();
 	create_operation();
-	add_var_identifier("a",0);
-	add_var_identifier("b",0);
-	add_var_identifier("c",0);
-	add_proc_identifier("boh1",0);
-	add_var_identifier("b",0);
+	add_var_identifier("a");
+	add_var_identifier("b");
+	add_var_identifier("c");
+	add_proc_identifier("boh1");
+	add_var_identifier("b");
 	add_element_to_operation("b",0,0);
 	add_int_to_operation();
-	affectation(0);
+	affectation();
 	add_element_to_operation("a",0,0);
 	add_element_to_operation("b",1,0);
 	add_int_to_operation();
-	mull_add_op(0);
-	affectation(0);
-	add_proc_identifier("boh2",0);
-	add_var_identifier("b",0);
+	mull_add_op();
+	affectation();
+	add_proc_identifier("boh2");
+	add_var_identifier("b");
 	print_dict();	
 	//add_element_to_operation("el2",1,1);
 	print_operation();
 	
 		
-}
-*/
+}*/
+
 
 
 

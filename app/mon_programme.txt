@@ -1,12 +1,7 @@
-program Hello ;
-procedure testing (wassim : string , wassim1 : integer);
-    var test1 : integer;
-    begin
-        test1:=3 ;
-    end
-procedure testing2 ;
-var
-test2 : integer;
-begin 
-test2:=3;
-end
+program test ; 
+var 
+test1 , test2 : integer ; 
+BEGIN 
+
+test := 3 ; 
+end 

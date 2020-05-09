@@ -1,6 +1,0 @@
-program
-begin
-int i:=3;//i est un entier
-45A
-(
-end

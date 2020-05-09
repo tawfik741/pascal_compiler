@@ -39,17 +39,59 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     PROGRAM = 258,
-     point_virgule = 259,
-     point = 260,
-     ID = 261
+     program = 258,
+     semicolon = 259,
+     identifier = 260,
+     keyword_var = 261,
+     keyword_array = 262,
+     keyword_of = 263,
+     type_integer = 264,
+     type_string = 265,
+     procedure = 266,
+     keyword_begin = 267,
+     keyword_end = 268,
+     affectop = 269,
+     keyword_if = 270,
+     keyword_then = 271,
+     keyword_else = 272,
+     keyword_while = 273,
+     keyword_do = 274,
+     keyword_write = 275,
+     keyword_read = 276,
+     opening_parenthesis = 277,
+     closing_parenthesis = 278,
+     opening_brackets = 279,
+     closing_brackets = 280,
+     mulop = 281,
+     addop = 282,
+     compop = 283,
+     an_integer = 284,
+     a_string = 285,
+     two_points = 286,
+     comma = 287,
+     colon = 288
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union 
+/* Line 1676 of yacc.c  */
+#line 19 "miniPasc.y"
+my_types
+{
+
+/* Line 1676 of yacc.c  */
+#line 19 "miniPasc.y"
+
+  char id;
+
+
+
+/* Line 1676 of yacc.c  */
+#line 94 "miniPasc.tab.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
