@@ -1,0 +1,1 @@
+run  "pip install pyqt5" to be able to access the pyqt library
