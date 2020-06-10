@@ -447,18 +447,19 @@ void affectation(int yylineno){
 
 
 
-/*
 
 main(){
 	create_dict();
-	set_args();
+	//set_args();
 	create_operation();
 	add_var_identifier("a",0);
-	add_var_identifier("b",0);
-	add_var_identifier("c",0);
+	add_element_to_operation("a",0,0);
+	add_int_to_operation();
+	affectation(0);
 	print_dict();
 	print_args();
 	}
+/*
 	
 main(){
 	create_dict();

@@ -145,7 +145,8 @@ liste_instructions: instruction semicolon liste_instructions
 					
 
 instruction: lvalue affectop expression		{	print_operation();
-												affectation(yylineno);}
+												//affectation(yylineno);
+												}
 			 |lvalue error expression 		{yyerror ("affect op attendu on line : ");}		
 			 | appel_methode				{printf("method call\n");}
 			 |instruction_composee

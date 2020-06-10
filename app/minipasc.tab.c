@@ -515,11 +515,11 @@ static const yytype_uint8 yyrline[] =
       96,    97,    98,    99,   100,   101,   102,   105,   106,   107,
      110,   111,   112,   115,   116,   117,   118,   120,   121,   122,
      123,   126,   127,   130,   131,   132,   133,   136,   137,   138,
-     141,   142,   143,   144,   147,   149,   150,   151,   152,   153,
-     154,   155,   156,   157,   158,   159,   160,   161,   162,   163,
-     164,   165,   166,   167,   168,   169,   172,   173,   176,   177,
-     178,   181,   182,   183,   184,   187,   188,   189,   190,   193,
-     194,   195,   196,   197,   198
+     141,   142,   143,   144,   147,   150,   151,   152,   153,   154,
+     155,   156,   157,   158,   159,   160,   161,   162,   163,   164,
+     165,   166,   167,   168,   169,   170,   173,   174,   177,   178,
+     179,   182,   183,   184,   185,   188,   189,   190,   191,   194,
+     195,   196,   197,   198,   199
 };
 #endif
 
@@ -1831,195 +1831,196 @@ yyreduce:
 /* Line 1455 of yacc.c  */
 #line 147 "miniPasc.y"
     {	print_operation();
-												affectation(yylineno);;}
+												//affectation(yylineno);
+												;}
     break;
 
   case 65:
 
 /* Line 1455 of yacc.c  */
-#line 149 "miniPasc.y"
+#line 150 "miniPasc.y"
     {yyerror ("affect op attendu on line : ");;}
     break;
 
   case 66:
 
 /* Line 1455 of yacc.c  */
-#line 150 "miniPasc.y"
+#line 151 "miniPasc.y"
     {printf("method call\n");;}
     break;
 
   case 70:
 
 /* Line 1455 of yacc.c  */
-#line 154 "miniPasc.y"
+#line 155 "miniPasc.y"
     {yyerror ("keyword_if attendu on line : ");;}
     break;
 
   case 71:
 
 /* Line 1455 of yacc.c  */
-#line 155 "miniPasc.y"
+#line 156 "miniPasc.y"
     {yyerror ("keyword_then attendu on line : ");;}
     break;
 
   case 72:
 
 /* Line 1455 of yacc.c  */
-#line 156 "miniPasc.y"
+#line 157 "miniPasc.y"
     {yyerror ("keyword_else attendu on line : ");;}
     break;
 
   case 73:
 
 /* Line 1455 of yacc.c  */
-#line 157 "miniPasc.y"
+#line 158 "miniPasc.y"
     {yyerror ("keyword_if attendu on line : ");;}
     break;
 
   case 74:
 
 /* Line 1455 of yacc.c  */
-#line 158 "miniPasc.y"
+#line 159 "miniPasc.y"
     {yyerror ("keyword_then attendu on line : ");;}
     break;
 
   case 76:
 
 /* Line 1455 of yacc.c  */
-#line 160 "miniPasc.y"
+#line 161 "miniPasc.y"
     {yyerror ("keyword_while attendu on line : ");;}
     break;
 
   case 77:
 
 /* Line 1455 of yacc.c  */
-#line 161 "miniPasc.y"
+#line 162 "miniPasc.y"
     {yyerror ("keyword_do attendu on line : ");;}
     break;
 
   case 80:
 
 /* Line 1455 of yacc.c  */
-#line 164 "miniPasc.y"
+#line 165 "miniPasc.y"
     {yyerror ("opening_parenthesis attendu on line : ");;}
     break;
 
   case 81:
 
 /* Line 1455 of yacc.c  */
-#line 165 "miniPasc.y"
+#line 166 "miniPasc.y"
     {yyerror ("closing_parenthesis attendu on line : ");;}
     break;
 
   case 84:
 
 /* Line 1455 of yacc.c  */
-#line 168 "miniPasc.y"
+#line 169 "miniPasc.y"
     {yyerror ("opening_parenthesis attendu on line : ");;}
     break;
 
   case 85:
 
 /* Line 1455 of yacc.c  */
-#line 169 "miniPasc.y"
+#line 170 "miniPasc.y"
     {yyerror ("closing_parenthesis attendu on line : ");;}
     break;
 
   case 88:
 
 /* Line 1455 of yacc.c  */
-#line 176 "miniPasc.y"
+#line 177 "miniPasc.y"
     {check_identifier((yyvsp[(1) - (3)]. string ), yylineno);;}
     break;
 
   case 89:
 
 /* Line 1455 of yacc.c  */
-#line 177 "miniPasc.y"
+#line 178 "miniPasc.y"
     {check_identifier((yyvsp[(1) - (4)]. string ), yylineno);;}
     break;
 
   case 90:
 
 /* Line 1455 of yacc.c  */
-#line 178 "miniPasc.y"
+#line 179 "miniPasc.y"
     {yyerror ("identifier attendu on line : ");;}
     break;
 
   case 93:
 
 /* Line 1455 of yacc.c  */
-#line 183 "miniPasc.y"
+#line 184 "miniPasc.y"
     {yyerror ("lexpression attendu on line : ");;}
     break;
 
   case 94:
 
 /* Line 1455 of yacc.c  */
-#line 184 "miniPasc.y"
+#line 185 "miniPasc.y"
     {yyerror ("comma attendu on line : ");;}
     break;
 
   case 96:
 
 /* Line 1455 of yacc.c  */
-#line 188 "miniPasc.y"
+#line 189 "miniPasc.y"
     {mull_add_op(yylineno);;}
     break;
 
   case 97:
 
 /* Line 1455 of yacc.c  */
-#line 189 "miniPasc.y"
+#line 190 "miniPasc.y"
     {mull_add_op(yylineno);;}
     break;
 
   case 98:
 
 /* Line 1455 of yacc.c  */
-#line 190 "miniPasc.y"
+#line 191 "miniPasc.y"
     {mull_add_op(yylineno);;}
     break;
 
   case 99:
 
 /* Line 1455 of yacc.c  */
-#line 193 "miniPasc.y"
+#line 194 "miniPasc.y"
     {check_identifier((yyvsp[(1) - (1)]. string ), yylineno);;}
     break;
 
   case 100:
 
 /* Line 1455 of yacc.c  */
-#line 194 "miniPasc.y"
+#line 195 "miniPasc.y"
     {check_identifier((yyvsp[(1) - (4)]. string ), yylineno);;}
     break;
 
   case 101:
 
 /* Line 1455 of yacc.c  */
-#line 195 "miniPasc.y"
+#line 196 "miniPasc.y"
     {yyerror ("closing_brackets attendu on line : ");;}
     break;
 
   case 103:
 
 /* Line 1455 of yacc.c  */
-#line 197 "miniPasc.y"
+#line 198 "miniPasc.y"
     {yyerror ("closing_parenthesis attendu on line : ");;}
     break;
 
   case 104:
 
 /* Line 1455 of yacc.c  */
-#line 198 "miniPasc.y"
+#line 199 "miniPasc.y"
     {add_int_to_operation();;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 2023 "miniPasc.tab.c"
+#line 2024 "miniPasc.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2231,7 +2232,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 202 "miniPasc.y"
+#line 203 "miniPasc.y"
  
 
 int yyerror(char const *msg) {

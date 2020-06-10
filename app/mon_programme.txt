@@ -1,8 +1,8 @@
 program test ; 
 var
-a , c : integer ;
+a , s : integer ;
 b : integer ;
 c : integer ;
 begin
-a" 
+a:=3 ; 
 end
