@@ -169,7 +169,8 @@ instruction: lvalue affectop expression		{
 			 |keyword_read opening_parenthesis liste_expressions error 	{yyerror ("closing_parenthesis attendu on line : ");};
 
 
-lvalue: identifier{								printf("affect op %s \n",$1);
+lvalue: identifier{								check_identifier($1, yylineno);
+												printf("affect op %s \n",$1);
 												add_element_to_operation($1,0,0);
 												print_operation();
 												}

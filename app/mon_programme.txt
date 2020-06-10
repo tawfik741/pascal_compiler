@@ -1,6 +1,6 @@
 program test ; 
 var
-a,b : integer ;
+a,b,z : integer ;
 begin
 a := 3 ;
 b := a ;
