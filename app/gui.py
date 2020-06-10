@@ -1,6 +1,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import gui_commands
+from gui_commands import compile , add_to_buffer
 
 class Gui(object):
     def setupUi(self, Window):
@@ -106,8 +106,12 @@ class Gui(object):
         self.resultText.setText(stdout)
     """    
     def runCompile(self):
+        print('clicked on run compile')
+        code=(self.codeText.toPlainText())
+        add_to_buffer(code)
         self.resultText.clear()
-        stdout=gui_commands.compile()
+        
+        stdout=compile()
         print(stdout)
         self.resultText.setText(stdout)
         #run compile
