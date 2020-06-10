@@ -275,13 +275,13 @@ void reset_branch(){
 
 
 void add_element_to_operation(char* name, int test_init, int test_use){
-	element*  i = (element*)malloc(sizeof(element));
+	/*element*  i = (element*)malloc(sizeof(element));
 	i->name = name;
 	i->test_init = test_init;
 	i->test_use = test_use;
 	
 	op.tableau[op.i] = i;
-	op.i = op.i + 1;
+	op.i = op.i + 1;*/
 }
 
 void add_int_to_operation(){

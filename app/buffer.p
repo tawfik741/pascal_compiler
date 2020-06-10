@@ -1,5 +1,6 @@
-program test ;
-var 
-a : integer ;
-begin 
+program test ; 
+var
+a,b : integer ;
+begin
+z :=a;
 end
