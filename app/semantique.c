@@ -37,13 +37,57 @@ Node* dict;
 Node* local_dict;
 // the dict of args
 Node* args;
-
+// operation
 operation op;
-
+// buffer element
 
 char* branch = "global";
 bool add_args = false;
 int flag1 = 0;
+
+void print_node(Node* s){
+	printf("Node name : %s ",s->name);
+	printf(" initialised to : %d ",s->test_init);
+	printf(" type : %d ",s->type);
+	printf(" use flag %d \n",s->test_use);	
+}
+
+
+void print_element(element* s){
+	printf("Element name : %s ",s->name);
+	printf(" initialised to : %d ",s->test_init);
+	printf(" use flag %d \n",s->test_use);	
+}
+
+void print_operation(){
+	int i;
+	printf("index : %d \n",i);
+	printf("les elements dans la pile d'operation: \n");
+	for(i=0; i< op.i; i++){
+		//printf("%s \n",op.tableau[i]->name);
+		print_element(op.tableau[i]);
+	}
+}
+
+void print_dict(){
+	Node* move = dict;
+	printf("TABLE DES SYMBOLES INITIALISEE : \n");
+	while(move !=NULL){
+		if(move->num_args == -1){
+			printf("Variable %s initialise: %d utilise: %d \n",move->name, move->test_init, move->test_use);	
+		}else{
+			printf("Procedure %s  \n",move->name);
+		}
+		if(move->branch !=NULL){
+			Node* move_branch = move->branch;
+			while(move_branch != NULL){
+				printf("------Variable %s initialise: %d utilise: %d \n",move_branch->name, move_branch->test_init, move_branch->test_use);
+				move_branch = move_branch->next;
+			}
+		}
+		move = move->next;
+	}
+}
 
 
 void create_dict(){
@@ -71,11 +115,11 @@ void add(Node* node, Node* i, int yylineno){
 		}
 		if(strcmp(name,move->name)!=0){
 			move->next = i;
-			//printf("variable %s scanned correctly and added to %s  \n", name, branch);
+			printf("variable %s scanned correctly and added to %s  \n", name, branch);
 		}
 		else{
 			fprintf(stderr,"semantic error %d \n", yylineno);
-			fprintf(stderr,"variable %s deja declaree on line %d \n", name, yylineno);
+			fprintf(stderr,"variable %s already declared on line %d \n", name, yylineno);
 			flag1 = 1;
 		}
 		
@@ -83,6 +127,7 @@ void add(Node* node, Node* i, int yylineno){
 
 // insert a variable into the table of symbols
 void add_var_identifier(char* name, int yylineno){
+	printf ("now using : %s \n",name);
 	Node* i;
 	Node* move;
 	if( (i = (Node*)malloc(sizeof(Node))) == NULL){
@@ -100,40 +145,56 @@ void add_var_identifier(char* name, int yylineno){
 		if(add_args == true){
 			if(args == NULL){
 				args = i;
-				//printf("args %s scanned and added correctly\n", i->name);
+				printf("args %s scanned and added correctly\n", i->name);
+
 			}
-			else
+			else{
 				add(args, i, yylineno);
+				}
 		}
 		else{
 			dict = i;
-			//printf("variable %s scanned correctly and added to %s  \n", i->name, "global");
+			printf("dict initilized to i ");
+		//	printf("variable %s scanned correctly and added to %s  \n", i->name, "global");
 		}
 	}
 	else {
 		if(add_args == true){
 			if(args == NULL){
 				args = i;
-				//printf("args %s scanned and added correctly\n", i->name);
+				printf("[NULL]args %s scanned and added correctly\n", i->name);
 			}
-			else
+			else{
+				printf("[NOT NULL]args %s scanned and added correctly\n", i->name);
+				printf("args is ");
+				print_node(args);
+				printf("line is %d\n",yylineno);
+				printf("i is ");
+				print_node(i);
 				add(args, i, yylineno);
+				}
 		}
 		else {
 			if(branch =="global"){
+				printf("adding %s to global branch\n",i->name);
 				add(dict, i, yylineno);
-			}
+				}
 			else{
+				printf("no global branch for you bro ");
 				move = local_dict;
 				if(move->branch == NULL){
+					printf("[NULL]variable %s scanned correctly and added to %s  \n", i->name, branch);
 					move->branch = i;
-					//printf("variable %s scanned correctly and added to %s  \n", i->name, branch);
 				}
-				else
-				add(move->branch, i, yylineno);
+				else{
+					printf("[NOT NULL]variable %s scanned correctly and added to %s  \n", i->name, branch);
+					add(move->branch, i, yylineno);
+					
+				}
 			}
 		}
 	}
+	print_dict();
 }
 
 
@@ -199,6 +260,7 @@ void add_element_to_operation(char* name, int test_init, int test_use){
 	i->name = name;
 	i->test_init = test_init;
 	i->test_use = test_use;
+	
 	op.tableau[op.i] = i;
 	op.i = op.i + 1;
 }
@@ -309,6 +371,7 @@ void mull_add_op(int yylineno){
 			fprintf(stderr,"variable %s  non initialisee on line %d \n", op.tableau[op.i-1]->name, yylineno);
 			flag1=1;
 		}else {
+
 			if(! add_localy(op.tableau[op.i-1]->name,-1,1))
 			add_globaly(op.tableau[op.i-1]->name,-1,1);
 		}
@@ -345,8 +408,11 @@ void affectation(int yylineno){
 			fprintf(stderr,"variable %s  non initialisee on line %d \n", op.tableau[op.i-1]->name, yylineno);
 			flag1=1;
 		}else {
-			if(! add_localy(op.tableau[op.i-1]->name,-1,1))
-			add_globaly(op.tableau[op.i-1]->name,-1,1);
+			fprintf(stdout,"trying to add to table\n",yylineno);
+			if(! add_localy(op.tableau[op.i-1]->name,-1,1)){
+				add_globaly(op.tableau[op.i-1]->name,-1,1);
+				fprintf(stdout,"added\n",yylineno);
+				}
 		}
 	}
 	if(strcmp(op.tableau[op.i-2]->name,"int")==0){
@@ -361,35 +427,17 @@ void affectation(int yylineno){
 }
 
 
-void print_dict(){
-	Node* move = dict;
-	printf("TABLE DES SYMBOLES INITIALISEE : \n");
-	while(move !=NULL){
-		if(move->num_args == -1){
-			printf("Variable %s initialise: %d utilise: %d \n",move->name, move->test_init, move->test_use);	
-		}else{
-			printf("Procedure %s  \n",move->name);
-		}
-		if(move->branch !=NULL){
-			Node* move_branch = move->branch;
-			while(move_branch != NULL){
-				printf("------Variable %s initialise: %d utilise: %d \n",move_branch->name, move_branch->test_init, move_branch->test_use);
-				move_branch = move_branch->next;
-			}
-		}
-		move = move->next;
-	}
-}
-
-void print_operation(){
-	int i;
-	printf("les elements dans la pile d'operation: \n");
-	for(i=0; i< op.i; i++){
-		printf("%s \n",op.tableau[i]->name);
-	}
-}
 
 /*
+
+main(){
+	create_dict();
+	create_operation();
+	add_var_identifier("a",0);
+	add_var_identifier("b",0);
+	add_var_identifier("c",0);
+	
+	}
 main(){
 	create_dict();
 	create_operation();
@@ -409,13 +457,10 @@ main(){
 	add_proc_identifier("boh2",0);
 	add_var_identifier("b",0);
 	print_dict();	
-	//add_element_to_operation("el2",1,1);
+	add_element_to_operation("el2",1,1);
 	print_operation();
-	
-		
 }
 */
-
 
 
 

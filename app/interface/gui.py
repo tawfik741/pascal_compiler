@@ -40,7 +40,7 @@ class Gui(object):
         self.resultText.setObjectName("resultText")
         self.textLayout.addWidget(self.resultText)
         self.verticalLayout.addLayout(self.textLayout)
-        #button layout
+        #button layout 
         self.buttonLayout = QtWidgets.QHBoxLayout()
         self.buttonLayout.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
         self.buttonLayout.setContentsMargins(-1, -1, 10, -1)
@@ -99,6 +99,7 @@ class Gui(object):
     
     def analyse(self):
         self.resultText.clear()
+        print('test')
         self.resultText.setText(self.codeText.toPlainText())
     
     def runCompile(self):

@@ -1,6 +1,6 @@
 program test ; 
-var 
-a : integer ;
+var
+a : integer 
 begin 
 a := 3 ;
-end 
+end

@@ -1,9 +1,10 @@
-{%
+%{
+	
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "semantique.c"
-
-
+ 			
 int yyerror(char const *msg);	
 int yylex(void);
 extern int yylineno;
@@ -43,7 +44,6 @@ int flag = 0;
 %left addop
 %left compop
 %token an_integer
-%token a_string
 %token two_points
 %token comma
 %token colon
@@ -54,8 +54,9 @@ int flag = 0;
 
 %%
                                                            
-programmes:   program identifier semicolon instruction_composee 
-			  |program identifier semicolon liste_declarations 
+programmes:   program identifier semicolon|
+			  |program identifier semicolon instruction_composee 
+			  |program identifier semicolon keyword_var liste_declarations 
 			  |program identifier semicolon declaration_methodes
 			  |program identifier semicolon keyword_var liste_declarations instruction_composee
 			  |program identifier semicolon declaration_methode instruction_composee
@@ -66,22 +67,25 @@ programmes:   program identifier semicolon instruction_composee
               |program error semicolon               {yyerror (" identifier attendu on line : "); } 
               |program identifier error              {yyerror (" point virgule attendu on line : "); }
               |program identifier semicolon error    {yyerror (" instruction composee attendu on line");};
-			  |identifier {printf($1);}
+			  |identifier {printf( "%s" , $1 );}
 
-liste_declarations : liste_declarations declaration
-					 |declaration;
+liste_declarations : declaration liste_declarations  
+					 |declaration 
+					 
 
 
 declaration: declaration_corps semicolon
-			|declaration_corps error 	{yyerror ("[declaration]semicolon attendu on line : "); };		
-
+			|declaration_corps error 	{yyerror ("[declaration]semicolon attendu on line : "); };	
 
 declaration_corps: liste_identificateurs colon type 
 				   |liste_identificateurs error type 		{yyerror ("colon attendu on line : "); };
 
 
-liste_identificateurs: liste_identificateurs comma identifier		{add_var_identifier($3, yylineno);}
-					   |identifier									{set_args();add_var_identifier($1, yylineno);}
+liste_identificateurs: liste_identificateurs comma identifier		{	set_args();
+																		add_var_identifier($3, yylineno);}
+					   |identifier									{	//printf("test value : %s \n",$1);
+						   												set_args();
+					   													add_var_identifier((char*)$1, yylineno);}
 					   |error comma identifier 						{yyerror ("identifier attendu on line : "); }
 					   |liste_identificateurs error identifier 		{yyerror ("comma attendu on line : "); }
 					   |liste_identificateurs comma error 			{yyerror ("identifier attendu on line : "); };
@@ -138,9 +142,10 @@ liste_instructions: instruction semicolon liste_instructions
 					|instruction semicolon 
 					|error semicolon instruction 				{yyerror ("instruction attendu on line : ");}
 					|instruction error liste_instructions  		{yyerror ("[instructions]semicolon attendu on line : ");};
+					
 
-
-instruction: lvalue affectop expression		{affectation(yylineno);}
+instruction: lvalue affectop expression		{	print_operation();
+												affectation(yylineno);}
 			 |lvalue error expression 		{yyerror ("affect op attendu on line : ");}		
 			 | appel_methode				{printf("method call\n");}
 			 |instruction_composee
@@ -190,7 +195,6 @@ facteur: identifier {check_identifier($1, yylineno);}
 		 |identifier opening_brackets expression error 		{yyerror ("closing_brackets attendu on line : ");}
 		 |opening_parenthesis expression closing_parenthesis
 		 |opening_parenthesis expression error 		{yyerror ("closing_parenthesis attendu on line : ");};
-		 |a_string
 		 |an_integer	{add_int_to_operation();}
 		 
 
@@ -218,13 +222,16 @@ int main(int argc, char *argv[])
 		printf("fichier introuvable !");
 		return 0;
 	}
- create_dict();
- create_operation();
- print_dict();
+ 	create_dict();
+ 	create_operation();
+ 	add_var_identifier("x",0);
+	add_var_identifier("y",0);
+	add_var_identifier("z",0);
+	print_dict();
  yyparse();
  if((flag == 0)&&(flag1 ==0)) printf("\nCODE CORRECT");
  else printf("\n CODE INCORRECT");
-
+ 
  return 0 ;
 }
 yywrap()

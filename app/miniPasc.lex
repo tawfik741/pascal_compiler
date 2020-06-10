@@ -24,7 +24,6 @@ iderr ({chiffre}|{sep})({lettre}|{chiffre}|{sep})*
 delim [\t]
 bl {delim}+
 integer ("-")?{chiffre}+
-string (\"[^\"]*\")
 ouvrante  (\()
 fermante  (\))
 message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
@@ -67,10 +66,14 @@ message               ("\"")({lettre}|{chiffre}|{sep}|{symbols})*("\"")
 "," 																				return comma;
 {ouvrante}                                                                          return opening_parenthesis;
 {fermante}                                                                          return closing_parenthesis;
-{id}                                                                                return identifier;
+{id}                                                                                {   
+                                                                                        //printf("Token: %s Type: STRING \n", yytext) ;
+                                                                                        yylval.string=strdup(yytext);
+                                                                                        return identifier ;  }
 {integer}																			return an_integer;
-{string}																			return a_string;
 "*"|"/"																				return mulop;
+"+"|"-"																				return addop;
+
 ":="	                                                                            return affectop;
 ":"																					return colon;
 ">"|"<"|">="|"<="|"="                                                              return compop;

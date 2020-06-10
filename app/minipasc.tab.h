@@ -66,10 +66,9 @@
      addop = 282,
      compop = 283,
      an_integer = 284,
-     a_string = 285,
-     two_points = 286,
-     comma = 287,
-     colon = 288
+     two_points = 285,
+     comma = 286,
+     colon = 287
    };
 #endif
 
@@ -80,14 +79,14 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 19 "miniPasc.y"
+#line 18 "miniPasc.y"
 
   char * string;
 
 
 
 /* Line 1676 of yacc.c  */
-#line 91 "miniPasc.tab.h"
+#line 90 "miniPasc.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

@@ -1,6 +1,7 @@
-PROGRAM test ; 
-VAR 
-a , b : integrer ; 
-BEGIN
-
-END
+program test ; 
+var
+a : integer ;
+b : integer ;
+c : integer ;
+begin 
+end
