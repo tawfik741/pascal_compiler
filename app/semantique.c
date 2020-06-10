@@ -440,15 +440,14 @@ void affectation(int yylineno){
 		fprintf(stderr,"affectation pour un entier est impossible on line %d \n", yylineno);
 		flag1=1;
 	}else{
-		printf("last test case possible\n");
+		printf("Affectated %s\n",op.tableau[op.i-2]->name);
 		if(! add_localy(op.tableau[op.i-2]->name,1,-1))
 			add_globaly(op.tableau[op.i-2]->name,1,-1);
 	}
 	op.i = op.i - 2;
 }
 
-
-
+/*
 
 main(){
 	create_dict();
@@ -462,7 +461,8 @@ main(){
 	print_dict();
 	print_args();
 	}
-/*
+
+
 	
 main(){
 	create_dict();

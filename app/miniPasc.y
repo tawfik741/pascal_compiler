@@ -144,7 +144,7 @@ liste_instructions: instruction semicolon liste_instructions
 					|instruction error liste_instructions  		{yyerror ("[instructions]semicolon attendu on line : ");};
 					
 
-instruction: lvalue affectop expression		{	print_operation();
+instruction: lvalue affectop expression		{	
 												//affectation(yylineno);
 												}
 			 |lvalue error expression 		{yyerror ("affect op attendu on line : ");}		
@@ -170,7 +170,10 @@ instruction: lvalue affectop expression		{	print_operation();
 			 |keyword_read opening_parenthesis liste_expressions error 	{yyerror ("closing_parenthesis attendu on line : ");};
 
 
-lvalue: identifier
+lvalue: identifier{								printf("affect op %s \n",$1);
+												add_element_to_operation($1,0,0);
+												print_operation();
+												}
 		|identifier opening_brackets expression closing_brackets;
 
 
@@ -225,10 +228,7 @@ int main(int argc, char *argv[])
 	}
  	create_dict();
  	create_operation();
- 	add_var_identifier("x",0);
-	add_var_identifier("y",0);
-	add_var_identifier("z",0);
-	print_dict();
+ 	print_dict();
 	print_args();
  yyparse();
  if((flag == 0)&&(flag1 ==0)) printf("\nCODE CORRECT");
