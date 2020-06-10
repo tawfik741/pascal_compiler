@@ -13,6 +13,7 @@ def compile ():
     print(stdout)
     return (stdout)
 def add_to_buffer(content):
+    p_buffer = open(buffer, "w")
     p_buffer.write(content)
     p_buffer.close()
     
