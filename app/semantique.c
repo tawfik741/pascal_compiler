@@ -173,7 +173,7 @@ void add_var_identifier(char* name, int yylineno){
 		}
 		else{
 			dict = i;
-			printf("dict initilized to i ");
+			printf("dict initilized to %s \n",i->name);
 		//	printf("variable %s scanned correctly and added to %s  \n", i->name, "global");
 		}
 	}
@@ -421,6 +421,7 @@ void affectation(int yylineno){
 		flag1=1;
 		return;
 	}
+
 	if(strcmp(op.tableau[op.i-1]->name,"int")!=0){
 		if(op.tableau[op.i-1]->test_init == 0){
 			fprintf(stderr,"semantic error %d \n", yylineno);
@@ -439,6 +440,7 @@ void affectation(int yylineno){
 		fprintf(stderr,"affectation pour un entier est impossible on line %d \n", yylineno);
 		flag1=1;
 	}else{
+		printf("last test case possible\n");
 		if(! add_localy(op.tableau[op.i-2]->name,1,-1))
 			add_globaly(op.tableau[op.i-2]->name,1,-1);
 	}
@@ -453,6 +455,7 @@ main(){
 	//set_args();
 	create_operation();
 	add_var_identifier("a",0);
+	
 	add_element_to_operation("a",0,0);
 	add_int_to_operation();
 	affectation(0);
