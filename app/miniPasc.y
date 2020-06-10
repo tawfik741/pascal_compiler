@@ -54,7 +54,7 @@ int flag = 0;
 
 %%
                                                            
-programmes:   program identifier semicolon|
+programmes:   program identifier semicolon
 			  |program identifier semicolon instruction_composee 
 			  |program identifier semicolon keyword_var liste_declarations 
 			  |program identifier semicolon declaration_methodes
@@ -67,8 +67,7 @@ programmes:   program identifier semicolon|
               |program error semicolon               {yyerror (" identifier attendu on line : "); } 
               |program identifier error              {yyerror (" point virgule attendu on line : "); }
               |program identifier semicolon error    {yyerror (" instruction composee attendu on line");};
-			  |identifier {printf( "%s" , $1 );}
-
+			  
 liste_declarations : declaration liste_declarations  
 					 |declaration 
 					 
@@ -145,7 +144,7 @@ liste_instructions: instruction semicolon liste_instructions
 					
 
 instruction: lvalue affectop expression		{	
-												//affectation(yylineno);
+												affectation(yylineno);
 												}
 			 |lvalue error expression 		{yyerror ("affect op attendu on line : ");}		
 			 | appel_methode				{printf("method call\n");}
