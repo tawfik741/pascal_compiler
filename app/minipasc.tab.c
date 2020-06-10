@@ -1645,7 +1645,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 84 "miniPasc.y"
-    {	set_args();
+    {	//set_args();
 																		add_var_identifier((yyvsp[(3) - (3)]. string ), yylineno);;}
     break;
 
@@ -1654,7 +1654,7 @@ yyreduce:
 /* Line 1455 of yacc.c  */
 #line 86 "miniPasc.y"
     {	//printf("test value : %s \n",$1);
-						   												set_args();
+						   												//set_args();
 					   													add_var_identifier((char*)(yyvsp[(1) - (1)]. string ), yylineno);;}
     break;
 
@@ -2261,6 +2261,7 @@ int main(int argc, char *argv[])
 	add_var_identifier("y",0);
 	add_var_identifier("z",0);
 	print_dict();
+	print_args();
  yyparse();
  if((flag == 0)&&(flag1 ==0)) printf("\nCODE CORRECT");
  else printf("\n CODE INCORRECT");

@@ -1,7 +1,8 @@
 program test ; 
 var
-a : integer ;
+a , c : integer ;
 b : integer ;
 c : integer ;
-begin 
+begin
+a" 
 end

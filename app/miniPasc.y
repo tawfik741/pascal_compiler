@@ -81,10 +81,10 @@ declaration_corps: liste_identificateurs colon type
 				   |liste_identificateurs error type 		{yyerror ("colon attendu on line : "); };
 
 
-liste_identificateurs: liste_identificateurs comma identifier		{	set_args();
+liste_identificateurs: liste_identificateurs comma identifier		{	//set_args();
 																		add_var_identifier($3, yylineno);}
 					   |identifier									{	//printf("test value : %s \n",$1);
-						   												set_args();
+						   												//set_args();
 					   													add_var_identifier((char*)$1, yylineno);}
 					   |error comma identifier 						{yyerror ("identifier attendu on line : "); }
 					   |liste_identificateurs error identifier 		{yyerror ("comma attendu on line : "); }
@@ -228,6 +228,7 @@ int main(int argc, char *argv[])
 	add_var_identifier("y",0);
 	add_var_identifier("z",0);
 	print_dict();
+	print_args();
  yyparse();
  if((flag == 0)&&(flag1 ==0)) printf("\nCODE CORRECT");
  else printf("\n CODE INCORRECT");

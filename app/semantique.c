@@ -89,6 +89,25 @@ void print_dict(){
 	}
 }
 
+void print_args(){
+	Node* move = args;
+	printf("ARGS : \n");
+	while(move !=NULL){
+		if(move->num_args == -1){
+			printf("Variable %s initialise: %d utilise: %d \n",move->name, move->test_init, move->test_use);	
+		}else{
+			printf("Procedure %s  \n",move->name);
+		}
+		if(move->branch !=NULL){
+			Node* move_branch = move->branch;
+			while(move_branch != NULL){
+				printf("------Variable %s initialise: %d utilise: %d \n",move_branch->name, move_branch->test_init, move_branch->test_use);
+				move_branch = move_branch->next;
+			}
+		}
+		move = move->next;
+	}
+}
 
 void create_dict(){
 	dict = NULL;
@@ -432,12 +451,15 @@ void affectation(int yylineno){
 
 main(){
 	create_dict();
+	set_args();
 	create_operation();
 	add_var_identifier("a",0);
 	add_var_identifier("b",0);
 	add_var_identifier("c",0);
-	
+	print_dict();
+	print_args();
 	}
+	
 main(){
 	create_dict();
 	create_operation();
