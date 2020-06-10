@@ -1,6 +1,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from gui_commands import compile 
+import gui_commands
 
 class Gui(object):
     def setupUi(self, Window):
@@ -56,7 +56,7 @@ class Gui(object):
         self.buttonLayout.addWidget(self.newButton)
         self.newButton.clicked.connect(self.new)
         #analyse button
-        self.analyseButton = QtWidgets.QPushButton(self.centralwidget)
+        """
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("icons/analyse.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.analyseButton.setIcon(icon1)
@@ -64,6 +64,7 @@ class Gui(object):
         self.analyseButton.setObjectName("analyseButton")
         self.buttonLayout.addWidget(self.analyseButton)
         self.analyseButton.clicked.connect(self.analyse)
+        """
         #compile button
         self.compileButton = QtWidgets.QPushButton(self.centralwidget)
         icon2 = QtGui.QIcon()
@@ -90,21 +91,25 @@ class Gui(object):
         self.codeText.setToolTip(_translate("Window", "Type Code here"))
         self.resutLabel.setText(_translate("Window", "Output: "))
         self.newButton.setText(_translate("Window", "New"))
-        self.analyseButton.setText(_translate("Window", "Analyse"))
+        #analyse Button
+        #self.analyseButton.setText(_translate("Window", "Analyse"))
         self.compileButton.setText(_translate("Window", "Compile"))
     
     def new (self):
         self.codeText.clear()
         self.resultText.clear()
-    
+    """    
     def analyse(self):
         self.resultText.clear()
-        self.resultText.setText(self.codeText.toPlainText())
-        print('test')
-        
+        stdout=gui_commands.compile()
+        print(stdout)
+        self.resultText.setText(stdout)
+    """    
     def runCompile(self):
         self.resultText.clear()
-        compile()
+        stdout=gui_commands.compile()
+        print(stdout)
+        self.resultText.setText(stdout)
         #run compile
         #self.resultText.setText("something")
 
