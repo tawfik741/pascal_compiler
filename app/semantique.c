@@ -185,12 +185,14 @@ void add_var_identifier(char* name, int yylineno){
 			}
 			else{
 				printf("[NOT NULL]args %s scanned and added correctly\n", i->name);
+			/*
 				printf("args is ");
 				print_node(args);
 				printf("line is %d\n",yylineno);
 				printf("i is ");
 				print_node(i);
-				add(args, i, yylineno);
+			*/
+			add(args, i, yylineno);
 				}
 		}
 		else {
@@ -213,7 +215,7 @@ void add_var_identifier(char* name, int yylineno){
 			}
 		}
 	}
-	print_dict();
+	//print_dict();
 }
 
 

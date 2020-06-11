@@ -2,7 +2,5 @@ program test ;
 var
 a,b,z : integer ;
 begin
-a := 3 ;
-b := a ;
-z :=a;
+write(5);
 end

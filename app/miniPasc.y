@@ -228,9 +228,10 @@ int main(int argc, char *argv[])
 	}
  	create_dict();
  	create_operation();
- 	print_dict();
-	print_args();
+ 	//print_args();
  yyparse();
+ print_dict();
+	
  if((flag == 0)&&(flag1 ==0)) printf("\nCODE CORRECT");
  else printf("\n CODE INCORRECT");
  
